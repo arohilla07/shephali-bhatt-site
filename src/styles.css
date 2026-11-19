@@ -732,3 +732,10 @@ html.warm #hero-lamp-glow, html.warm .lamp-glow { filter: saturate(1.4) brightne
 }
 
 @media (max-width: 439px) { .nav li:first-child { display: none; } }
+
+/* footer: the easter egg is just a quiet icon */
+.mode-btn.in-footer { padding: 6px; border-color: transparent; background: transparent; color: var(--muted); }
+.mode-btn.in-footer .mode-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.mode-btn.in-footer:hover { color: var(--ink); border-color: transparent; }
+.mode-btn.in-footer .mode-icon .bite { fill: var(--bg); }
+html.warm .mode-btn.in-footer { background: transparent; border-color: transparent; color: #c98a10; }
