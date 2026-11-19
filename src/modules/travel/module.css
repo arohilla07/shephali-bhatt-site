@@ -132,7 +132,7 @@ html.no-js .m-travel-tear { visibility: hidden; }
   font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase;
 }
 .m-travel-notes { display: grid; gap: 8px; }
-.m-travel-note { line-height: 1.3; text-wrap: balance; }
+.m-travel-note { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: baseline; column-gap: 4px; line-height: 1.3; }
 .m-travel-note-k {
   display: inline-block; min-width: 6.2em; margin-right: 8px; text-align: center; padding: 2px 9px 1px; border: 1px solid currentColor; border-radius: 999px;
   color: var(--accent-ink); vertical-align: .22em;
@@ -229,6 +229,7 @@ html.no-js .m-travel-tear { visibility: hidden; }
   html.js .m-travel:not(.is-done) .m-travel-hint, html.js .m-travel.has-note .m-travel-hint { opacity: 0; }
   html.js .m-travel-notes { gap: 0; align-items: center; }
   html.js .m-travel-note {
+    display: block; text-wrap: balance;
     opacity: 0; visibility: hidden; transform: translateY(7px);
     transition: opacity .25s var(--ease), transform .45s var(--spring), visibility 0s .25s;
   }
