@@ -1,0 +1,77 @@
+{
+  "name": "Shephali Bhatt",
+  "tagline": "Reporting on how the internet changes us",
+  "intro": "Shephali Bhatt is a Mumbai-based tech and culture journalist who chronicles how the internet changes us as people, and the way we live. Her reporting and essays have appeared in Mint, Mint Lounge and The Economic Times.",
+  "about_paragraphs": [
+    "Shephali Bhatt began writing about the creator economy and internet culture in 2018, when, as she puts it, they were “yet to become legitimate beats.” Across years at The Economic Times and at Mint, where she wrote the weekly <em>Like. Share. Subscribe.</em> newsletter, she has built a sustained record of Indian digital life: who makes money from it, who gets misled by it, and what it is quietly doing to our manners. She calls herself a chronicler of the first draft of history, adding that there is “just a lot of internet” in it.",
+    "She treated creators as an industry while much of the coverage still treated them as a novelty. <a href='https://lifestyle.livemint.com/news/big-story/enter-tastefluencer-the-rise-of-a-curator-economy-111676561169994.html'><em>Enter, tastefluencer</em></a> brought the idea of a curator economy, influence built on taste rather than output, to Indian readers early. <a href='https://economictimes.indiatimes.com/news/company/corporate-trends/the-influencer-diaries-how-influencer-marketing-has-upended-india-incs-sales-pitch-and-advertising-spends-by-drawing-big-money/articleshow/108953911.cms'><em>The Influencer Diaries</em></a> followed the money as influencer marketing upended India Inc’s ad budgets, and a feature on <a href='https://economictimes.indiatimes.com/tech/technology/how-instagram-reels-are-transforming-indian-weddings-and-shaping-the-industry/articleshow/107389927.cms'>reels and Indian weddings</a> showed a whole industry reorganising around the reel. With <a href='https://economictimes.indiatimes.com/news/elections/lok-sabha/india/the-youtube-election-social-media-emerges-as-key-player-in-indian-polls/articleshow/110041707.cms'><em>The YouTube Election</em></a>, she tracked creators becoming a force in the 2024 Lok Sabha campaign.",
+    "Her work keeps returning to trust, and to how Indian internet life sits within global platform shifts. <a href='https://www.livemint.com/industry/media/the-fault-in-imdb-s-stars-11671036868887.html'><em>Can IMDb fix the fault in its stars?</em></a> investigated click farms and coordinated one-star campaigns distorting ratings for Indian films. <a href='https://economictimes.indiatimes.com/tech/technology/when-the-third-party-cookie-crumbles-a-new-privacy-centric-internet-emerges/articleshow/107972727.cms'><em>When the third-party cookie crumbles</em></a> looked at what a more privacy-centric internet means here, and <a href='https://www.livemint.com/mint-top-newsletter/likesharesubscribe11122022.html'><em>We need to TikTalk</em></a> weighed TikTok’s legacy in India’s short-video scene. More recently she has examined bank loan promos dressed up as <a href='https://www.livemint.com/mint-lounge/business-of-life/banks-loan-promos-dark-patterns-rbi-user-consent-11790856818947.html'>service messages</a>, a dark pattern and a question of consent.",
+    "Increasingly, her subject is the etiquette and psychology of being online. She has written about the season of being <a href='https://lifestyle.livemint.com/smart-living/innovation/the-season-of-seenzoned-and-too-many-notifications-111674815170853.html'>“seenzoned”</a>, about how <a href='https://www.livemint.com/mint-lounge/business-of-life/ghosting-mia-digital-life-umbrella-term-off-campus-11784352223148.html'>ghosting</a> grew from a dating term into an umbrella for every way people go missing in digital life, and about why “so bad it’s good” makes hate-watching a crowd-puller. Her piece on <a href='https://www.livemint.com/mint-lounge/ideas/ai-diy-tutorials-misleading-crochet-origami-craft-hobbies-11789662362220.html'>AI-generated craft tutorials</a> begins with one vlogger whose vase looked nothing like the video’s, then widens into a confidence crisis among hobbyists. That move, from one person to everyone, is characteristic of her work.",
+    "That habit of explaining as well as reporting is why podcast hosts invite her to talk it through. Amit Varma introduced her episode of <em>The Seen and the Unseen</em> by noting that the internet has changed how we live and “someone needs to make sense of it all”; Komal Mirani, opening <em>On Second Thought</em>, called her “one of the sharpest cultural reporters I know.” Now an independent tech reporter and researcher, she still writes for Mint and keeps a Substack, <a href='https://shephalib.substack.com'><em>Living Things</em></a>, on how the internet changes us and how businesses respond. By her own account, she spends more time offline than on."
+  ],
+  "themes": [
+    {
+      "title": "The creator business",
+      "text": "Creators as an industry: the money behind influencer marketing, the gear and the curation, and creators’ growing role in elections and weddings alike."
+    },
+    {
+      "title": "Platforms and trust",
+      "text": "What happens when systems people rely on are gamed, from manipulated IMDb ratings to dark patterns in banking messages and misleading AI tutorials."
+    },
+    {
+      "title": "Manners of digital life",
+      "text": "The etiquette and psychology of being always reachable: ghosting, seenzoning, notification overload and the digital detox that goes wrong."
+    },
+    {
+      "title": "Internet as commentary",
+      "text": "Reading memes, hate-watching and online talk for what they reveal about status, taste and the way India lives now."
+    }
+  ],
+  "podcasts": [
+    {
+      "show": "The Seen and the Unseen",
+      "title": "Ep 391: Shephali Bhatt Is Searching for the Incredible",
+      "url": "https://seenunseen.in/episodes/2024/7/22/episode-391-shephali-bhatt-is-searching-for-the-incredible/",
+      "year": "2024",
+      "note": "With Amit Varma, on popular culture, the creator economy and contemporary society."
+    },
+    {
+      "show": "On Second Thought with Komal Mirani",
+      "title": "We’re All Creators Now. What Happens Next?",
+      "url": "https://rss.com/podcasts/on-second-thought-with-komal-mirani/2073950",
+      "year": "2025",
+      "note": "Creator culture, parasocial relationships, AI, women in Indian media and journalism’s future."
+    },
+    {
+      "show": "Advertising is Dead with Varun Duggirala",
+      "title": "Shephali Bhatt on the Evolution of the Creator Economy",
+      "url": "https://chartable.com/podcasts/advertising-is-dead/episodes/121072759-shephali-bhatt-on-the-evolution-of-the-creator-economy",
+      "year": "",
+      "note": "How India’s creator economy has evolved, and where the business is heading."
+    },
+    {
+      "show": "Pepper Content Podcast",
+      "title": "Ep 8: Journalism, Writing and the Creator Economy",
+      "url": "https://hubhopper.com/episode/ep-8-journalism-writing-and-the-creator-economy-ft-shephali-bhatt-1616574912",
+      "year": "",
+      "note": "The state of journalism, influencers turning investors, and building a writer’s personal brand."
+    },
+    {
+      "show": "The Career Show",
+      "title": "Shephali Bhatt: Journalism in India",
+      "url": "https://chartable.com/podcasts/the-career-show/episodes/90627044-shephali-bhatt-journalism-in-india-linkedins-top-voice-2019-a-career-in-journalism",
+      "year": "",
+      "note": "Moving from freelancing to an editorial role, and growing an audience through newsletters."
+    }
+  ],
+  "links": [
+    { "label": "Living Things (Substack)", "url": "https://shephalib.substack.com" },
+    { "label": "X", "url": "https://x.com/ShephaliBhatt" },
+    { "label": "Instagram", "url": "https://www.instagram.com/shephalibhatt/" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/shephali-bhatt-19727915/" },
+    { "label": "Mint", "url": "https://www.livemint.com/authors/shephali-bhatt" },
+    { "label": "The Economic Times", "url": "https://economictimes.indiatimes.com/etreporter/author-shephali-bhatt-479230465.cms" },
+    { "label": "Linktree", "url": "https://linktr.ee/ShephaliBhatt" }
+  ],
+  "meta_description": "Shephali Bhatt is a Mumbai-based journalist who reports on internet culture, the creator economy and how the internet changes the way we live."
+}

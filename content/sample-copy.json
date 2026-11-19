@@ -1,0 +1,30 @@
+{
+  "name": "Shephali Bhatt",
+  "tagline": "Writing about the internet, culture, and the people living inside both.",
+  "intro": "I'm a journalist based in India. I report on technology, internet culture and the quiet ways the online world reshapes everyday life. My work has appeared in Mint, Mint Lounge and The Economic Times, and I now write independently, including a newsletter called Living Things.",
+  "about_paragraphs": [
+    "SAMPLE COPY. For more than a decade I have reported on how people use, love and push back against technology: creators building careers out of their bedrooms, the economics of attention, and the small rituals that make the internet feel like home.",
+    "At <em>Mint</em> and <em>Mint Lounge</em> I wrote long-form features on digital culture; before that I covered brands and media at <em>The Economic Times</em>. Today I write independently and publish <a href=\"https://substack.com\">Living Things</a>, a newsletter about technology and the living.",
+    "I care about clear sentences, curious questions, and stories that treat readers as smart, busy people."
+  ],
+  "themes": [
+    {"title": "Internet culture", "text": "Memes, fandoms, creators and the communities that form around them."},
+    {"title": "Technology & society", "text": "How platforms and AI change work, relationships and attention."},
+    {"title": "Business of media", "text": "Brands, advertising and the economics behind what we scroll."},
+    {"title": "Everyday life", "text": "Small human stories about wellbeing, habits and modern living."}
+  ],
+  "podcasts": [
+    {"show": "Sample Podcast", "title": "What the internet is doing to us", "url": "https://example.com/podcast-1", "year": "2024", "note": "On creator economies and burnout."},
+    {"show": "Another Show", "title": "The culture of being online", "url": "https://example.com/podcast-2", "year": "2023", "note": "A conversation about digital rituals."},
+    {"show": "Third Conversation", "title": "Reporting on technology in India", "url": "https://example.com/podcast-3", "year": "2022", "note": ""}
+  ],
+  "links": [
+    {"label": "Living Things (Substack)", "url": "https://substack.com"},
+    {"label": "X / Twitter", "url": "https://x.com"},
+    {"label": "LinkedIn", "url": "https://www.linkedin.com"},
+    {"label": "Instagram", "url": "https://www.instagram.com"},
+    {"label": "Mint author page", "url": "https://www.livemint.com"},
+    {"label": "Economic Times author page", "url": "https://economictimes.indiatimes.com"}
+  ],
+  "meta_description": "Shephali Bhatt is an Indian journalist writing about the internet, technology and culture for Mint, Mint Lounge, The Economic Times and her newsletter Living Things."
+}

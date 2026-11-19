@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="t"><title id="t">Contact: an envelope and a paper plane</title>
+<rect x="24" y="84" width="112" height="78" rx="6" fill="#fff"/>
+<path d="M28 90l52 40 52-40" />
+<path d="M28 158l38-32M132 158l-38-32" stroke-width="1.6" opacity=".55"/>
+<rect x="36" y="140" width="18" height="10" rx="2" fill="#f3d6cf" stroke-width="1.4"/>
+<path d="M118 60l62-28-22 64-16-18Z" fill="#f6e7a8"/>
+<path d="M142 78l38-46M142 78l-2 22 10-14" />
+<path d="M118 60l24 18" stroke-width="1.4" opacity=".6"/>
+<path d="M106 66c-14 6-26 2-32-6s-18-8-28 2" stroke-dasharray="2 6" stroke-width="1.8" opacity=".6"/>
+</svg>

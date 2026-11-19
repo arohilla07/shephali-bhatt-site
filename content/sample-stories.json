@@ -1,0 +1,124 @@
+{
+  "groups": [
+    {
+      "id": "internet",
+      "title": "Internet culture",
+      "blurb": "Features on creators, fandoms and online life.",
+      "stories": [
+        {
+          "headline": "Sample headline number 1: a story about internet culture and the people in it",
+          "outlet": "Mint Lounge",
+          "section": "Features",
+          "date": "2025-04",
+          "url": "https://example.com/story-1",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": true
+        },
+        {
+          "headline": "Sample headline number 2: a story about internet culture and the people in it",
+          "outlet": "Mint",
+          "section": "Features",
+          "date": "2024-07",
+          "url": "https://example.com/story-2",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        },
+        {
+          "headline": "Sample headline number 3: a story about internet culture and the people in it",
+          "outlet": "Mint Lounge",
+          "section": "Features",
+          "date": "2024",
+          "url": "https://example.com/story-3",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        },
+        {
+          "headline": "Sample headline number 4: a story about internet culture and the people in it",
+          "outlet": "Living Things",
+          "section": "Features",
+          "date": "2023-01",
+          "url": "https://example.com/story-4",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "id": "tech",
+      "title": "Technology & society",
+      "blurb": "How platforms and AI reshape everyday life.",
+      "stories": [
+        {
+          "headline": "Sample headline number 5: a story about technology & society and the people in it",
+          "outlet": "Mint",
+          "section": "Features",
+          "date": "2023-04",
+          "url": "https://example.com/story-5",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": true
+        },
+        {
+          "headline": "Sample headline number 6: a story about technology & society and the people in it",
+          "outlet": "Mint",
+          "section": "Features",
+          "date": "2022",
+          "url": "https://example.com/story-6",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        },
+        {
+          "headline": "Sample headline number 7: a story about technology & society and the people in it",
+          "outlet": "Living Things",
+          "section": "Features",
+          "date": "2022-10",
+          "url": "https://example.com/story-7",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        },
+        {
+          "headline": "Sample headline number 8: a story about technology & society and the people in it",
+          "outlet": "Mint Lounge",
+          "section": "Features",
+          "date": "2021-01",
+          "url": "https://example.com/story-8",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "Brands & media",
+      "blurb": "Earlier reporting on advertising, brands and media.",
+      "stories": [
+        {
+          "headline": "Sample headline number 9: a story about brands & media and the people in it",
+          "outlet": "The Economic Times",
+          "section": "Features",
+          "date": "2021",
+          "url": "https://example.com/story-9",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": true
+        },
+        {
+          "headline": "Sample headline number 10: a story about brands & media and the people in it",
+          "outlet": "The Economic Times",
+          "section": "Features",
+          "date": "2020-07",
+          "url": "https://example.com/story-10",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        },
+        {
+          "headline": "Sample headline number 11: a story about brands & media and the people in it",
+          "outlet": "The Economic Times",
+          "section": "Features",
+          "date": "2020-10",
+          "url": "https://example.com/story-11",
+          "summary": "SAMPLE. A one- or two-line summary of the story, describing what it reports and why it matters to readers.",
+          "featured": false
+        }
+      ]
+    }
+  ]
+}

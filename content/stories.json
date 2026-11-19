@@ -1,0 +1,272 @@
+{
+  "groups": [
+    {
+      "id": "creator-economy",
+      "title": "The creator economy, as business",
+      "blurb": "How India's creators turned posting into an industry, and how brands followed the money.",
+      "stories": [
+        {
+          "headline": "Content creators do a quick sound check",
+          "outlet": "Mint",
+          "section": "Print edition",
+          "date": "2025-07",
+          "url": "https://www.magzter.com/stories/newspaper/Mint-New-Delhi/CONTENT-CREATORS-DO-A-QUICK-SOUND-CHECK",
+          "summary": "Creators such as Nipun Jain of Arey Pata Hai are investing in professional microphones, a sign of India's creator economy moving from phone videos to serious production.",
+          "featured": false
+        },
+        {
+          "headline": "The Influencer Diaries: How influencer marketing has upended India Inc's sales pitch and advertising spends by drawing big money",
+          "outlet": "The Economic Times",
+          "section": "Corporate Trends",
+          "date": "2024-03",
+          "url": "https://economictimes.indiatimes.com/news/company/corporate-trends/the-influencer-diaries-how-influencer-marketing-has-upended-india-incs-sales-pitch-and-advertising-spends-by-drawing-big-money/articleshow/108953911.cms",
+          "summary": "A look at how influencer marketing is drawing a growing share of Indian companies' advertising budgets and changing how they sell.",
+          "featured": false,
+          "image": "assets/stories/influencer-diaries.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-108953911,width-1200,height-630/photo.jpg"
+        },
+        {
+          "headline": "How Instagram reels are transforming Indian weddings and shaping the industry",
+          "outlet": "ET Tech",
+          "section": "Technology",
+          "date": "2024-02",
+          "url": "https://economictimes.indiatimes.com/tech/technology/how-instagram-reels-are-transforming-indian-weddings-and-shaping-the-industry/articleshow/107389927.cms",
+          "summary": "On how Instagram Reels are influencing the way Indian weddings are planned, staged and filmed, and what that means for the wedding business.",
+          "featured": false,
+          "image": "assets/stories/reels-weddings.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-107389927,width-1200,height-630/photo.jpg"
+        },
+        {
+          "headline": "Content creators replenishing household supplies in fancy containers is gaining eyeballs in India",
+          "outlet": "The Economic Times",
+          "section": "Retail",
+          "date": "2023-10",
+          "url": "https://economictimes.indiatimes.com/industry/services/retail/content-creators-replenishing-household-supplies-in-fancy-containers-is-gaining-eyeballs-in-india/articleshow/104614274.cms",
+          "summary": "On the growing Indian audience for \"restock\" videos, in which creators refill household supplies into decorative containers.",
+          "featured": false,
+          "image": "assets/stories/refill-containers.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-104614274,width-1200,height-630/photo.jpg"
+        },
+        {
+          "headline": "Enter, tastefluencer: The rise of a curator economy",
+          "outlet": "Mint Lounge",
+          "section": "Big Story",
+          "date": "2023-02",
+          "url": "https://lifestyle.livemint.com/news/big-story/enter-tastefluencer-the-rise-of-a-curator-economy-111676561169994.html",
+          "summary": "A Lounge feature on \"tastefluencers\", creators whose influence comes from curating what to watch, read and buy rather than making original content.",
+          "featured": true,
+          "image": "assets/stories/tastefluencer.webp",
+          "image_source": "https://images.livemint.com/img/2023/02/16/original/Web_1_1676565091084.jpg"
+        },
+        {
+          "headline": "Why every brand is saying it with stickers",
+          "outlet": "Mint",
+          "section": "Advertising",
+          "date": "2022-11",
+          "url": "https://www.livemint.com/industry/advertising/gen-z-glued-to-online-stickers-brands-make-their-move-11668454103061.html",
+          "summary": "On Gen Z's attachment to chat stickers and brands moving into sticker packs as a marketing channel inside messaging apps.",
+          "featured": false,
+          "image": "assets/stories/genz-stickers.webp",
+          "image_source": "https://images.livemint.com/img/2022/11/14/1600x900/GenZ_1668454312497_1668454502910_1668454502910.jpg"
+        }
+      ]
+    },
+    {
+      "id": "platforms-trust",
+      "title": "Platforms, power and trust",
+      "blurb": "Investigations into who shapes what we see online, and whether the systems behind it can be trusted.",
+      "stories": [
+        {
+          "headline": "Why are banks sending loan promos as service messages now?",
+          "outlet": "Mint Lounge",
+          "section": "Business of Life",
+          "date": "2026-10",
+          "url": "https://www.livemint.com/mint-lounge/business-of-life/banks-loan-promos-dark-patterns-rbi-user-consent-11790856818947.html",
+          "summary": "Starting from a verified WhatsApp message about a loan she never took, the piece examines promotions disguised as service notices as a dark pattern and a question of consent.",
+          "featured": false,
+          "image": "assets/stories/loan-promos.webp",
+          "image_source": "https://www.livemint.com/lm-img/img/2026/10/01/1600x900/logo/loan-promos-on-whatsapp_1790857073754_W7a0_1790857073863_PiFw_0d7f961d-f21a-47d4-8760-f60e9e6e417b_lDUe.jpg"
+        },
+        {
+          "headline": "The YouTube Election: Social media emerges as key player in Indian polls",
+          "outlet": "The Economic Times",
+          "section": "Lok Sabha Elections",
+          "date": "2024-05",
+          "url": "https://economictimes.indiatimes.com/news/elections/lok-sabha/india/the-youtube-election-social-media-emerges-as-key-player-in-indian-polls/articleshow/110041707.cms",
+          "summary": "On the role YouTube and social media played in campaigning and political conversation during India's 2024 Lok Sabha elections.",
+          "featured": true,
+          "image": "assets/stories/youtube-election.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-110041707,width-1200,height-630/photo.jpg"
+        },
+        {
+          "headline": "With content king, creators trying hard to be kingmakers this Lok Sabha elections",
+          "outlet": "The Economic Times",
+          "section": "Lok Sabha Elections",
+          "date": "2024-04",
+          "url": "https://economictimes.indiatimes.com/news/elections/lok-sabha/india/with-content-king-creators-trying-hard-to-be-kingmakers-this-lok-sabha-elections/articleshow/109763160.cms",
+          "summary": "On content creators seeking political influence during the 2024 Lok Sabha elections.",
+          "featured": false,
+          "image": "assets/stories/creators-kingmakers.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-109763160,width-1200,height-630/photo.jpg"
+        },
+        {
+          "headline": "When the third-party cookie crumbles, a new privacy-centric internet emerges",
+          "outlet": "ET Tech",
+          "section": "Technology",
+          "date": "2024-02",
+          "url": "https://economictimes.indiatimes.com/tech/technology/when-the-third-party-cookie-crumbles-a-new-privacy-centric-internet-emerges/articleshow/107972727.cms",
+          "summary": "On the phasing out of third-party cookies and what a more privacy-focused web could mean for users and advertisers.",
+          "featured": false,
+          "image": "assets/stories/cookie-crumbles.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-107972727,width-1200,height-630/photo.jpg"
+        },
+        {
+          "headline": "Can IMDb fix the fault in its stars?",
+          "outlet": "Mint",
+          "section": "Media",
+          "date": "2022-12",
+          "url": "https://www.livemint.com/industry/media/the-fault-in-imdb-s-stars-11671036868887.html",
+          "summary": "An investigation into how IMDb ratings for Indian films are manipulated, from click farms inflating scores to coordinated one-star campaigns and fake credits.",
+          "featured": true,
+          "image": "assets/stories/imdb-stars.webp",
+          "image_source": "https://images.livemint.com/img/2022/12/14/1600x900/LSpic_1671037084462_1671037094870_1671037094870.jpg"
+        }
+      ]
+    },
+    {
+      "id": "digital-life",
+      "title": "The etiquette of digital life",
+      "blurb": "Essays on the unwritten rules of being online, and the culture that grows around them.",
+      "stories": [
+        {
+          "headline": "How to make a case against hate-watching when 'so bad it's good' is a crowd-puller",
+          "outlet": "Mint Lounge",
+          "section": "Business of Life",
+          "date": "2026-10",
+          "url": "https://www.livemint.com/mint-lounge/business-of-life/against-hate-watching-streaming-platforms-trash-films-showbiz-11791522997111.html",
+          "summary": "An essay on why \"so bad it's good\" shows draw audiences, feed internet references and reward streaming platforms.",
+          "featured": false,
+          "image": "assets/stories/hate-watching.webp",
+          "image_source": "https://www.livemint.com/lm-img/img/2026/10/09/1600x900/logo/iStock-2091626015_1791523269640_LnNZ_1791523281929_ZU7q_e99aa30b-70fe-4661-b7f0-6d99e80b0a3a_j1oK.jpg"
+        },
+        {
+          "headline": "From selling kidney to theft concerns: What iPhone Duo memes say about how people may use it in public",
+          "outlet": "Mint Lounge",
+          "section": "Business of Life",
+          "date": "2026-09",
+          "url": "https://www.livemint.com/mint-lounge/business-of-life/iphone-duo-price-memes-street-safety-luxury-in-public-11789667518724.html",
+          "summary": "Reads the meme wave after Apple's roughly Rs 3 lakh foldable as commentary on price, status and street safety.",
+          "featured": false,
+          "image": "assets/stories/iphone-duo.webp",
+          "image_source": "https://www.livemint.com/lm-img/img/2026/09/17/1600x900/logo/iStock-1197952660_1789667643302_O1cA_1789667684836_pAXN_6253b85f-15d0-4223-8c21-6bc674bd3eef_ekW3.jpg"
+        },
+        {
+          "headline": "How AI-generated tutorials have led to a confidence crisis among hobbyists",
+          "outlet": "Mint Lounge",
+          "section": "Ideas",
+          "date": "2026-09",
+          "url": "https://www.livemint.com/mint-lounge/ideas/ai-diy-tutorials-misleading-crochet-origami-craft-hobbies-11789662362220.html",
+          "summary": "How AI-made craft videos on crochet, origami and DIY mislead hobbyists, told through a Jharkhand vlogger whose vase looked nothing like the tutorial's.",
+          "featured": false,
+          "image": "assets/stories/ai-diy-tutorials.webp",
+          "image_source": "https://www.livemint.com/lm-img/img/2026/09/17/1600x900/logo/ai-vs-human-gamla-4up-16x9_1789666237191_Xwrn_1789666271280_HtqI_fdf229e4-5d47-4508-bdf9-b94f4cdacee0_bMFj.jpg"
+        },
+        {
+          "headline": "Digital detox gone wrong: How a missed notification led to mayhem on a well-planned holiday",
+          "outlet": "Mint Lounge",
+          "section": "Business of Life",
+          "date": "2026-09",
+          "url": "https://www.livemint.com/mint-lounge/business-of-life/digital-detox-gone-wrong-missed-notification-japan-tokyo-11789058697862.html",
+          "summary": "A holiday in Japan goes awry after a missed notification, raising the question of what switching off really costs.",
+          "featured": false,
+          "image": "assets/stories/digital-detox.webp",
+          "image_source": "https://www.livemint.com/lm-img/img/2026/09/10/1600x900/logo/GettyImages-509670809_1789059734680_76bc4cf1-9f37-4c1b-946a-d72ed0df1d3a_1789059797901_76eecb3a-16b8-44f4-a2cd-43aa43a860ea_cfef735d-524a-481c-8104-77efcce081cc_6357bc51-68f2-45d6-8a18-2838d3f5f2ea.jpg"
+        },
+        {
+          "headline": "How ghosting became the umbrella term for all the ways people go MIA in digital life",
+          "outlet": "Mint Lounge",
+          "section": "Business of Life",
+          "date": "2026-07",
+          "url": "https://www.livemint.com/mint-lounge/business-of-life/ghosting-mia-digital-life-umbrella-term-off-campus-11784352223148.html",
+          "summary": "Traces how \"ghosting\" grew from a dating term into a catch-all for disappearing online, at work and among friends.",
+          "featured": false,
+          "image": "assets/stories/ghosting-mia.webp",
+          "image_source": "https://www.livemint.com/lm-img/img/2026/07/18/1600x900/logo/off-campus-ghosting_1784353566796_1784353588707_834b422d-6921-4c05-b808-beee75769019.jpg"
+        },
+        {
+          "headline": "The season of 'seenzoned' and too many notifications",
+          "outlet": "Mint Lounge",
+          "section": "Smart Living",
+          "date": "2023-01",
+          "url": "https://lifestyle.livemint.com/smart-living/innovation/the-season-of-seenzoned-and-too-many-notifications-111674815170853.html",
+          "summary": "On notification overload and messages read but left unanswered, and the etiquette of being always reachable.",
+          "featured": false,
+          "image": "assets/stories/seenzoned.webp",
+          "image_source": "https://images.livemint.com/img/2023/01/27/original/20230127_160204_0000_1674815596831.jpg"
+        },
+        {
+          "headline": "The unplanned glory of Surabhi",
+          "outlet": "ET BrandEquity",
+          "section": "Media",
+          "date": "2017",
+          "url": "https://brandequity.economictimes.indiatimes.com/news/media/the-unplanned-glory-of-surabhi/60286032",
+          "summary": "A media feature on Surabhi, the long-running Doordarshan cultural magazine show, and its legacy.",
+          "featured": false,
+          "image": "assets/stories/surabhi.webp",
+          "image_source": "https://img.etimg.com/thumb/msid-60286032,width-1200,height-630/photo.jpg"
+        }
+      ]
+    },
+    {
+      "id": "like-share-subscribe",
+      "title": "Like. Share. Subscribe.",
+      "blurb": "Picks from her 2022 weekly Mint newsletter on the creator economy and internet culture.",
+      "stories": [
+        {
+          "headline": "What you liked, shared, subscribed to in 2022",
+          "outlet": "Mint",
+          "section": "Newsletter",
+          "date": "2022-12",
+          "url": "https://www.livemint.com/mint-top-newsletter/likesharesubscribe25122022.html",
+          "summary": "The newsletter's year-end round-up of Indian internet culture and creator-economy trends in 2022.",
+          "featured": false,
+          "image": "assets/stories/lss-2022-12-25.webp",
+          "image_source": "https://images.livemint.com/img/2022/12/24/original/lss_1671888551381.png"
+        },
+        {
+          "headline": "We need to TikTalk",
+          "outlet": "Mint",
+          "section": "Newsletter",
+          "date": "2022-12",
+          "url": "https://www.livemint.com/mint-top-newsletter/likesharesubscribe11122022.html",
+          "summary": "An edition on TikTok's influence on India's short-video scene.",
+          "featured": false,
+          "image": "assets/stories/lss-2022-12-11.webp",
+          "image_source": "https://images.livemint.com/img/2022/12/10/original/tiktok_1670681823173.jpg"
+        },
+        {
+          "headline": "Bro, I accidentally got a million followers",
+          "outlet": "Mint",
+          "section": "Newsletter",
+          "date": "2022-11",
+          "url": "https://www.livemint.com/mint-top-newsletter/likesharesubscribe13112022.html",
+          "summary": "An edition on accidental virality and what sudden large followings mean for ordinary users.",
+          "featured": false,
+          "image": "assets/stories/lss-2022-11-13.webp",
+          "image_source": "https://images.hindustantimes.com/img/2022/11/12/original/lead-visual_1668268648503.png"
+        },
+        {
+          "headline": "Gaming the algorithm to 'manifest'",
+          "outlet": "Mint",
+          "section": "Newsletter",
+          "date": "2022-04",
+          "url": "https://www.livemint.com/mint-top-newsletter/likesharesubscribe17042022.html",
+          "summary": "An early edition of the newsletter, on the idea of \"manifesting\" outcomes by gaming social media algorithms.",
+          "featured": false,
+          "image": "assets/stories/lss-2022-04-17.webp",
+          "image_source": "https://images.livemint.com/img/2022/04/16/original/thumbnail_visual_1650120477787.jpeg"
+        }
+      ]
+    }
+  ]
+}

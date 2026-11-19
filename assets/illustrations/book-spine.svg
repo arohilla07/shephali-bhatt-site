@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 260" role="img" aria-labelledby="t"><title id="t">Book spine</title>
+<path d="M6 0h48a4 4 0 0 1 4 4v252a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4Z" fill="currentColor"/>
+<g fill="#fff" fill-opacity=".55"><rect x="2" y="22" width="56" height="3"/><rect x="2" y="30" width="56" height="1.5"/><rect x="2" y="228" width="56" height="1.5"/><rect x="2" y="235" width="56" height="3"/></g>
+<rect x="14" y="70" width="32" height="96" rx="2" fill="#fff" fill-opacity=".8"/>
+<rect x="22" y="84" width="16" height="2" fill="currentColor" opacity=".5"/><rect x="20" y="92" width="20" height="2" fill="currentColor" opacity=".35"/><rect x="24" y="148" width="12" height="2" fill="currentColor" opacity=".35"/>
+<circle cx="30" cy="200" r="5" fill="#fff" fill-opacity=".55"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 220" role="img" aria-labelledby="t"><title id="t">Mug of tea</title>
+<g fill="none" stroke="#1f2a44" stroke-opacity=".3" stroke-width="2" stroke-linecap="round"><path class="steam" d="M62 92c-8-10 8-14 0-26s6-16 0-26"/><path class="steam" d="M84 92c-8-10 8-14 0-26s6-16 0-26"/></g>
+<ellipse cx="74" cy="196" rx="58" ry="6" fill="#1f2a44" opacity=".06"/>
+<g stroke="#1f2a44" stroke-opacity=".55" stroke-width="1.4">
+<path d="M118 124c26 0 26 44 0 44" fill="none" stroke-width="10" stroke="#cfe0f5" stroke-opacity="1"/>
+<path d="M118 118c34 0 34 56 0 56M118 130c18 0 18 32 0 32" fill="none"/>
+<path d="M28 104h92v74a16 16 0 0 1-16 16H44a16 16 0 0 1-16-16Z" fill="#cfe0f5"/>
+<path d="M28 104h92v14H28Z" fill="#fff"/>
+<path d="M54 146h40" stroke-width="1.4"/><path d="M60 156h28" stroke-opacity=".3"/>
+</g></svg>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>$name: journalist, internet and culture</title>
+<meta name="description" content="$meta_description">
+<meta name="author" content="$name">
+<link rel="canonical" href="$site_url">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="$name">
+<meta property="og:title" content="$name">
+<meta property="og:description" content="$meta_description">
+<meta property="og:url" content="$site_url">
+<meta property="og:image" content="${site_url}assets/shephali-wide.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Portrait of $name">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$name">
+<meta name="twitter:description" content="$meta_description">
+<meta name="twitter:image" content="${site_url}assets/shephali-wide.jpg">
+<meta name="twitter:image:alt" content="Portrait of $name">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="preload" as="image" href="assets/shephali-portrait.jpg" fetchpriority="high">
+<link rel="stylesheet" href="styles.css?v=$version">
+<script src="site.js?v=$version"></script>
+<script type="application/ld+json">$jsonld</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top" aria-label="$name, back to top">$name</a>
+    <nav aria-label="Primary">
+      <ul class="nav">
+        <li><a href="#about"><span class="nav-num">01</span>About</a></li>
+        <li><a href="#stories"><span class="nav-num">02</span>Stories</a></li>
+        <li><a href="#on-air"><span class="nav-num">03</span>On air</a></li>
+        <li><a href="#contact"><span class="nav-num">04</span>Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="mode-btn in-header" aria-pressed="false" data-mode-toggle><svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><g class="rays" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g><circle class="core" cx="12" cy="12" r="5.2" fill="currentColor"/><circle class="bite" cx="15.6" cy="9" r="4.6"/></svg><span class="mode-label">Dark mode</span></button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="label hero-label"><span class="label-dot" aria-hidden="true"></span>Journalist &middot; Internet &amp; culture</p>
+        <h1 id="hero-title" class="hero-name">$name</h1>
+        <p class="hero-tagline">$tagline</p>
+        <p class="hero-intro">$intro</p>
+        <p class="hero-actions">
+          <a class="btn btn-primary" href="#stories">Browse the shelf <span aria-hidden="true">&darr;</span></a>
+          <a class="btn btn-quiet" href="#contact">Get in touch</a>
+        </p>
+      </div>
+      $hero_scene
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      $head1
+      <div class="about-grid">
+        <div class="prose">
+$about_paragraphs
+        </div>
+        <aside class="themes" aria-label="What she writes about">
+          <div class="deco deco-flatpack" aria-hidden="true">$deco_flatpack</div>
+          <p class="label">What she writes about</p>
+          <ol class="theme-list">
+$themes
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="stories" aria-labelledby="stories-title">
+    <div class="wrap">
+      $head2
+$featured
+$filters
+      <div class="groups">
+$groups
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="on-air" aria-labelledby="onair-title">
+    <div class="wrap">
+      $head3
+      <div class="onair-grid">
+      <div class="deco deco-mug-wrap" aria-hidden="true">$deco_mug</div>
+      <ul class="pod-list">
+$podcasts
+      </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      $head4
+      <div class="contact-grid">
+        <div class="contact-side">
+          <p class="contact-lede">For commissions, collaborations or a conversation, you can find Shephali here.</p>
+          <div class="deco deco-corner" aria-hidden="true">$deco_lamp$deco_plant</div>
+        </div>
+        <div class="parts">
+          <p class="parts-head" aria-hidden="true"><span>Parts list</span><span>Qty</span></p>
+        <ul class="link-list">
+$links
+        </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="book-dialog" id="book-dialog" aria-labelledby="bd-title">
+  <div class="book-open">
+    <div class="page page-left" data-slot="cover"></div>
+    <div class="page page-right">
+      <div data-slot="meta"></div>
+      <h3 class="bd-title" id="bd-title" data-slot="title"></h3>
+      <p class="bd-summary" data-slot="summary"></p>
+      <p class="bd-actions"><a class="btn btn-primary" data-slot="link" href="#" target="_blank" rel="noopener"><span data-slot="read">Read the story</span> <span aria-hidden="true">&#8599;</span><span class="sr-only"> (opens in a new tab)</span></a></p>
+      <p class="bd-hint" aria-hidden="true">Esc to put it back</p>
+    </div>
+    <button type="button" class="bd-close" data-close aria-label="Close and return to the shelf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>&copy; $year $name</p>
+    <p>Photo: Shephali Bhatt &middot; Story images: Mint &amp; The Economic Times</p>
+    <p class="footer-end"><button type="button" class="mode-btn in-footer" aria-pressed="false" data-mode-toggle><svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><g class="rays" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g><circle class="core" cx="12" cy="12" r="5.2" fill="currentColor"/><circle class="bite" cx="15.6" cy="9" r="4.6"/></svg><span class="mode-label">Dark mode</span></button> <a href="#top">Back to top &uarr;</a></p>
+  </div>
+</footer>
+<div class="warm-light" aria-hidden="true"></div>
+<div class="warm-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="t"><title id="t">Looking closely: a hand holding a magnifying glass over a phone</title>
+<rect x="30" y="26" width="66" height="124" rx="12" fill="#e8d8bd" fill-opacity=".35"/>
+<path d="M54 36h18"/>
+<path d="M42 56h42M42 68h34M42 80h40M42 92h26M42 116h42M42 128h30" stroke-width="1.6" opacity=".55"/>
+<circle cx="104" cy="82" r="30" fill="#cfe0f5" fill-opacity=".55"/>
+<path d="M90 70a17 17 0 0 1 12-6" stroke-width="2.4" opacity=".7"/>
+<g transform="translate(125 103) rotate(45)">
+<rect x="0" y="-5" width="58" height="10" rx="5" fill="#e8d8bd"/>
+<path d="M20 22v18M40 22v18"/>
+<path d="M17 38h26v18H17z" fill="#cfe3d4"/>
+<path d="M14 2c0-8 4-12 10-12h12c7 0 10 4 10 11v10c0 8-4 12-12 12H24c-6 0-10-4-10-10Z" fill="#f3d6cf"/>
+<path d="M23 7v14M30 8v15M37 7v14" stroke-width="1.6"/>
+<rect x="20" y="-13" width="30" height="10" rx="5" fill="#f3d6cf"/>
+</g>
+<path d="M150 30l4-8M162 38l8-4M142 22l-1-8" stroke-width="1.6" opacity=".6"/>
+</svg>

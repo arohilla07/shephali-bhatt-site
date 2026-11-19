@@ -1,0 +1,7 @@
+dist/
+screens/
+__pycache__/
+*.pyc
+.DS_Store
+content/questions-for-shephali.md
+content/url-check.txt

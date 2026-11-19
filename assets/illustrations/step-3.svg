@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="t"><title id="t">On air: a vintage microphone</title>
+<rect x="76" y="28" width="48" height="84" rx="24" fill="#cfe0f5" fill-opacity=".6"/>
+<path d="M76 56h48M76 70h48M76 84h48" stroke-width="1.4" opacity=".55"/>
+<path d="M90 40v62M100 36v70M110 40v62" stroke-width="1.4" opacity=".35"/>
+<path d="M62 74v8a38 38 0 0 0 76 0v-8"/>
+<path d="M100 120v34"/>
+<path d="M70 168h60" stroke-width="2"/>
+<rect x="64" y="154" width="72" height="14" rx="7" fill="#e8d8bd"/>
+<path d="M44 52a62 62 0 0 0 0 44M30 44a80 80 0 0 0 0 60M156 52a62 62 0 0 1 0 44M170 44a80 80 0 0 1 0 60" stroke-width="1.8" opacity=".6"/>
+</svg>
