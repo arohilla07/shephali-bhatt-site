@@ -69,8 +69,9 @@
 .m-words-meta {
   margin-top: 9px; font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
 }
-.m-words-lang::after { content: "\00a0\00b7"; color: var(--rule-strong); }
-.m-words-say { text-transform: none; letter-spacing: .01em; color: var(--ink-2); white-space: nowrap; }
+.m-words-say { display: block; text-transform: none; letter-spacing: .01em; color: var(--ink-2); white-space: nowrap; }
+.m-words.is-live .m-words-say { display: inline; }
+.m-words.is-live .m-words-lang::after { content: "\00a0\00b7"; color: var(--rule-strong); }
 .m-words-mean { font-family: var(--serif); font-size: 1.22rem; line-height: 1.2; letter-spacing: -.005em; color: var(--ink); text-wrap: balance; }
 
 /* ---------------------------------------------------------------- aside: key, her line, note */
@@ -93,7 +94,7 @@
 /* ================================================================ live: the drawer and its deck */
 .m-words.is-live .m-words-cabinet {
   --m-words-cw: min(400px, calc(100% - 76px)); --m-words-ch: 258px; --m-words-fx: 40px;
-  position: relative; width: 100%; max-width: 520px; margin: 0 auto;
+  position: relative; isolation: isolate; width: 100%; max-width: 520px; margin: 0 auto;
 }
 .m-words.is-live .m-words-deck { display: block; position: relative; z-index: 1; height: calc(var(--m-words-ch) + 28px); }
 .m-words.is-live .m-words-card {

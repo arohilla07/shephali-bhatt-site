@@ -110,7 +110,7 @@
   /* name: letters rise in. The first rule is a failsafe that shows the name if the split never happens. */
   .m-motion-on .hero-name { animation: m-motion-name-safe .6s var(--ease) 2.4s both; }
   .m-motion-on .hero-name.m-motion-split { animation: none; }
-  .m-motion-on .hero-name .m-motion-ch {
+  .m-motion-on .hero-name.m-motion-split .m-motion-ch {
     opacity: 0; transform-origin: 0 100%;
     animation: m-motion-ch .85s var(--ease) both; animation-delay: calc(.1s + var(--m-motion-i, 0) * 38ms);
   }

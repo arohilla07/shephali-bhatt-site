@@ -1,10 +1,9 @@
 /* Off the clock: a catalogue spread of six small objects. Everything is scoped to .m-offclock. */
 
 .m-offclock .oc-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; margin-bottom: 26px; }
-.m-offclock .oc-top .inter-head { margin-bottom: 0; }
+.m-offclock .oc-top .inter-head { margin-bottom: 0; max-width: 40rem; }
 .m-offclock .oc-note-line { display: flex; flex-wrap: wrap; gap: 4px 0; padding-bottom: 6px; }
 .m-offclock .oc-note-line span + span::before { content: "\00B7"; margin: 0 .7em; color: var(--rule-strong); }
-.m-offclock .oc-hint { display: none; }
 
 /* ------------------------------------------------------------------ grid */
 .m-offclock .oc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
@@ -13,7 +12,7 @@
 
 /* ------------------------------------------------------------------ tile */
 .m-offclock .oc-tile {
-  --oc-tint: #f4f6f9;
+  --oc-tint: #f4f6f9; --oc-h: 148px;
   position: relative; display: flex; flex-direction: column; flex: 1; min-width: 0;
   background: #fff; border: 1px solid var(--rule); border-radius: 14px; box-shadow: var(--shadow-soft);
 }
@@ -30,9 +29,9 @@
 .m-offclock .oc-t-birch { --oc-tint: #f8f1e3; }
 .m-offclock .oc-t-grey { --oc-tint: #f1f3f6; }
 
-.m-offclock .oc-stage { position: relative; margin: 8px 8px 0; height: 148px; border-radius: 8px; background: var(--oc-tint); }
+.m-offclock .oc-stage { position: relative; margin: 8px 8px 0; height: var(--oc-h); border-radius: 8px; background: var(--oc-tint); }
 .m-offclock .oc-clip { position: absolute; inset: 0; overflow: hidden; border-radius: 8px; display: grid; place-items: center; }
-.m-offclock .oc-svg { display: block; height: 100%; width: auto; max-width: 100%; overflow: visible; }
+.m-offclock .oc-svg { display: block; flex: none; width: calc(var(--oc-h) * 1.25); height: var(--oc-h); overflow: visible; }
 
 .m-offclock .oc-art {
   position: absolute; left: 10px; bottom: -11px; z-index: 1; margin: 0;
@@ -49,7 +48,7 @@
 
 /* The button: a small chip in the corner, with a hit area that covers the illustration. */
 .m-offclock .oc-play { position: static; display: block; width: 0; height: 0; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.m-offclock .oc-play::after { content: ""; position: absolute; left: 8px; right: 8px; top: 8px; height: 148px; border-radius: 8px; }
+.m-offclock .oc-play::after { content: ""; position: absolute; left: 8px; right: 8px; top: 8px; height: var(--oc-h); border-radius: 8px; }
 .m-offclock .oc-play:focus-visible { outline: none; }
 .m-offclock .oc-play:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 2px; }
 html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
@@ -231,12 +230,8 @@ html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
 /* ------------------------------------------------------------------ pager (phone row only) */
 .m-offclock .oc-pager { display: none; }
 
-/* ------------------------------------------------------------------ desktop niceties */
-@media (min-width: 960px) {
-  .m-offclock .oc-hint { display: inline; }
-}
 @media (min-width: 600px) and (max-width: 959px) {
-  .m-offclock .oc-stage, .m-offclock .oc-play::after { height: 160px; }
+  .m-offclock .oc-tile { --oc-h: 164px; }
 }
 
 /* ------------------------------------------------------------------ phone: one snapping row */
@@ -250,7 +245,7 @@ html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
   }
   .m-offclock .oc-grid::-webkit-scrollbar { display: none; }
   .m-offclock .oc-item { flex: 0 0 min(76%, 280px); scroll-snap-align: start; }
-  .m-offclock .oc-stage, .m-offclock .oc-play::after { height: 156px; }
+  .m-offclock .oc-tile { --oc-h: 160px; }
   .m-offclock .oc-tile.is-held { transform: translateY(-3px); }
   html.js .m-offclock .oc-pager { display: flex; justify-content: center; gap: 7px; margin: -6px 0 0; }
   .m-offclock .oc-pager i { width: 6px; height: 6px; border-radius: 50%; background: var(--rule-strong); transition: background-color .25s var(--ease), transform .25s var(--ease); }

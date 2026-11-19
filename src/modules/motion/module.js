@@ -94,15 +94,23 @@
       try {
         var text = (h.textContent || "").replace(/\s+/g, " ").trim();
         if (reduce || h.children.length || !text || now() > 2000) return;
-        var wrap = make("span"), i = 0;
+        // Where each letter sits in the plain heading, so the split copy can keep the font's kerning.
+        var tn = h.firstChild, plain = null, k;
+        if (h.childNodes.length === 1 && tn.nodeType === 3 && tn.data === text && doc.createRange && Array.from(text).length === text.length) {
+          var rg = doc.createRange();
+          plain = [];
+          for (k = 0; k < text.length; k++) { rg.setStart(tn, k); rg.setEnd(tn, k + 1); plain.push(rg.getBoundingClientRect().left); }
+        }
+        var wrap = make("span"), chars = [], at = 0;
         wrap.setAttribute("aria-hidden", "true");
         text.split(" ").forEach(function (word, wi) {
-          if (wi) wrap.appendChild(doc.createTextNode(" "));
+          if (wi) { wrap.appendChild(doc.createTextNode(" ")); at++; }
           var w = make("span", "m-motion-word");
           Array.from(word).forEach(function (ch) {
             var c = make("span", "m-motion-ch");
             c.textContent = ch;
-            c.style.setProperty("--m-motion-i", i++);
+            c.style.setProperty("--m-motion-i", chars.length);
+            chars.push({ el: c, at: at++, word: wi });
             w.appendChild(c);
           });
           wrap.appendChild(w);
@@ -110,10 +118,19 @@
         h.setAttribute("aria-label", text);
         h.textContent = "";
         h.appendChild(wrap);
+        if (plain) { // measured before .m-motion-split starts the letters moving
+          var fs = parseFloat(win.getComputedStyle(h).fontSize) || 16;
+          var lefts = chars.map(function (c) { return c.el.getBoundingClientRect().left; });
+          for (k = 1; k < chars.length; k++) {
+            if (chars[k].word !== chars[k - 1].word) continue;
+            var d = (plain[chars[k].at] - plain[chars[k - 1].at]) - (lefts[k] - lefts[k - 1]);
+            if (Math.abs(d) > .05 && Math.abs(d) < fs * .2) chars[k].el.style.marginLeft = (d / fs).toFixed(4) + "em";
+          }
+        }
         setTimeout(function () {
           h.textContent = text;
           h.removeAttribute("aria-label");
-        }, 100 + i * 38 + 850 + 250);
+        }, 100 + chars.length * 38 + 850 + 250);
       } finally {
         h.classList.add("m-motion-split");
       }

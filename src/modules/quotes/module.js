@@ -17,6 +17,7 @@
     var canAnimate = typeof Element !== "undefined" && typeof Element.prototype.animate === "function";
     var EASE = "cubic-bezier(.2,.7,.2,1)";
     var running = [];
+    var snapTimer = 0;
 
     root.classList.add("m-quotes--live");
 
@@ -174,8 +175,15 @@
       running = [];
       release(null);
 
+      /* on the phone rail, switch snapping off while the cards change places, or the browser
+         scrolls after the card it was snapped to and the whole row jumps */
+      if (!n) board.style.scrollSnapType = "none";
       place(randomOrder(n));
-      if (!n) board.scrollLeft = 0;
+      if (!n) {
+        board.scrollLeft = 0;
+        window.clearTimeout(snapTimer);
+        snapTimer = window.setTimeout(function () { board.style.scrollSnapType = ""; }, 120);
+      }
       slots.forEach(function (li) {
         var card = li.querySelector(".m-quotes-card");
         if (card) card.style.setProperty("--mq-r", tilt(li));
