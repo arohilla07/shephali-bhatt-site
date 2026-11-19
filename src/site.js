@@ -86,7 +86,7 @@
       var btns = doc.querySelectorAll("[data-mode-toggle]");
       if (!btns.length) return;
       var toast = doc.querySelector(".warm-toast"), light = doc.querySelector(".warm-light"), tt;
-      var line = ["Still no dark mode.", "Light is good. We turned the lamps up a little more."];
+      var line = ["Nice try.", "This reading room only comes in daylight and lamplight."];
       function set(on, fromBtn) {
         if (fromBtn && light) {
           var r = fromBtn.getBoundingClientRect();
