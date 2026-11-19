@@ -1,0 +1,171 @@
+/* Japan corner: a playable koto and a sheet of washi. Every selector is scoped to .m-japan. */
+
+.m-japan .inter-head .label { display: inline-flex; align-items: center; gap: 10px; }
+.m-japan-grid { display: grid; gap: 14px; }
+@media (min-width: 860px) { .m-japan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
+
+.m-japan-panel {
+  display: flex; flex-direction: column; margin: 0; padding: 12px 12px 16px;
+  border: 1px solid var(--rule); border-radius: 14px; background: var(--bg);
+}
+@media (min-width: 720px) { .m-japan-panel { padding: 18px 22px 20px; } }
+
+.m-japan-stage { position: relative; width: 100%; max-width: 470px; margin: 0 auto; aspect-ratio: 420 / 326; }
+.m-japan-art { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.m-japan-shadow { fill: var(--ink); opacity: .06; }
+.m-japan-ink { stroke: var(--ink); stroke-width: 1.7; }
+
+/* ---- figure label and seal ---- */
+.m-japan-fig { position: absolute; left: 0; top: 0; display: flex; align-items: flex-start; gap: 8px; pointer-events: none; }
+.m-japan-seal {
+  display: grid; place-items: center; flex: none; width: 27px; height: 27px;
+  border: 1.5px solid var(--ink); border-radius: 6px; background: var(--rose); color: var(--ink);
+  font: 400 15px/1 "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Noto Serif CJK JP", "Songti SC", serif;
+}
+.m-japan-seal-tall { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; height: 44px; background: var(--green); }
+.m-japan-seal-tall span { display: block; }
+.m-japan-fig-text {
+  padding-top: 1px; font-family: var(--mono); font-size: 10.5px; line-height: 1.4; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ---- koto ---- */
+.m-japan-feet { fill: var(--birch-3); }
+.m-japan-face { fill: var(--birch-3); }
+.m-japan-top { fill: var(--birch); }
+.m-japan-zone { fill: var(--birch-2); stroke-width: 1.4; }
+.m-japan-grain { stroke: var(--birch-3); stroke-width: 1.3; }
+.m-japan-nut { fill: #fff; stroke-width: 1.4; }
+.m-japan-holes { fill: var(--ink); }
+.m-japan-nums { font-family: var(--mono); font-size: 7.5px; fill: var(--ink-2); text-anchor: middle; opacity: .8; }
+.m-japan-bridges { fill: #fff; stroke: var(--ink); stroke-width: 1.3; }
+.m-japan-line { stroke: var(--ink); transition: stroke .5s var(--ease); }
+.m-japan-blur { fill: var(--accent); stroke: none; opacity: 0; }
+.m-japan-string.is-live .m-japan-line { stroke: var(--accent); transition-duration: 0s; }
+.m-japan-string.is-focus .m-japan-line { stroke: var(--accent); }
+.m-japan-string { transition: opacity .45s var(--ease); }
+.m-japan-string.is-flash { opacity: .2; transition-duration: 0s; }
+.m-japan-callout path { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 4; stroke-linecap: round; opacity: .5; }
+.m-japan-callout text { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; fill: var(--ink-2); }
+.m-japan-callout .m-japan-callout-sub { fill: var(--muted); font-size: 10px; }
+@media (max-width: 519px) { .m-japan-nums { display: none; } }
+
+/* strings are real buttons laid along each string; they only exist when the script runs */
+.m-japan-keys { display: none; }
+html.js .m-japan .m-japan-keys {
+  display: block; position: absolute; inset: 0; touch-action: pan-y;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+.m-japan-key {
+  position: absolute; left: var(--x); top: var(--y); width: 4.4%; height: var(--l);
+  transform: translate(-50%, -50%) rotate(var(--r));
+  padding: 0; border: 0; border-radius: 999px; background: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.m-japan-key:focus { outline: none; }
+.m-japan-key:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; border-radius: 999px; background: rgba(44, 91, 208, .07); }
+
+.m-japan-sound { display: none; }
+html.js .m-japan .m-japan-sound {
+  position: absolute; right: 0; top: 0; display: inline-flex; align-items: center; gap: 6px;
+  min-height: 36px; padding: 0 12px 0 10px; border: 1px solid var(--rule-strong); border-radius: 999px;
+  background: var(--bg); color: var(--ink-2); font: 500 13px/1 var(--sans); white-space: nowrap; cursor: pointer;
+  transition: border-color .2s var(--ease), color .2s var(--ease), background-color .2s var(--ease);
+}
+html.js .m-japan .m-japan-sound:hover { border-color: var(--ink); }
+.m-japan-sound svg { flex: none; }
+.m-japan-sound-state { min-width: 1.6em; color: var(--accent-ink); }
+.m-japan-sound-cross { opacity: 0; }
+.m-japan-sound[aria-pressed="false"] { color: var(--muted); }
+.m-japan-sound[aria-pressed="false"] .m-japan-sound-state { color: var(--muted); }
+.m-japan-sound[aria-pressed="false"] .m-japan-sound-waves { opacity: 0; }
+.m-japan-sound[aria-pressed="false"] .m-japan-sound-cross { opacity: 1; }
+
+/* ---- notes and captions ---- */
+.m-japan-note { display: grid; justify-items: center; align-items: center; margin-top: 8px; text-align: center; }
+.m-japan-note > * { grid-area: 1 / 1; }
+.m-japan-note-hint { display: none; font-size: 11.5px; }
+html.js .m-japan .m-japan-note-hint { display: block; transition: opacity .3s var(--ease); }
+.m-japan-note-fact { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.25; color: var(--ink-2); }
+html.js .m-japan .m-japan-note-fact { opacity: 0; transform: translateY(5px); transition: opacity .35s var(--ease), transform .5s var(--spring); }
+html.js .m-japan .m-japan-washi.is-up .m-japan-note-fact { opacity: 1; transform: none; }
+html.js .m-japan .m-japan-washi.is-up .m-japan-note-hint { opacity: 0; }
+.m-japan-caption {
+  margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule);
+  font-size: 14.5px; line-height: 1.5; color: var(--ink-2); text-wrap: pretty;
+}
+@media (min-width: 720px) { .m-japan-caption { font-size: 15px; line-height: 1.55; } }
+
+/* ---- washi ---- */
+.m-japan-vat-inner { fill: var(--birch-3); stroke: none; }
+.m-japan-water { fill: var(--blue); stroke: none; }
+.m-japan-sheet-shadow { fill: var(--ink); stroke: none; opacity: .07; }
+.m-japan-water-lines { fill: none; stroke: #fff; stroke-width: 1.5; }
+.m-japan-ring { fill: none; stroke: #fff; stroke-width: 1.6; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.m-japan-vat-corner { fill: none; stroke-width: 1.3; }
+.m-japan-vat-front { fill: var(--birch-2); }
+.m-japan-vat-side { fill: var(--birch-3); }
+.m-japan-vat-rim { fill: var(--birch); }
+.m-japan-vat-mitres { fill: none; stroke-width: 1.3; }
+.m-japan-guides { fill: none; stroke: var(--ink); stroke-width: 1.3; stroke-dasharray: 3 5; stroke-linecap: round; opacity: .45; }
+.m-japan-arrow { stroke: var(--ink); stroke-width: 1.6; opacity: .7; }
+.m-japan-drip { opacity: 0; }
+.m-japan-drip path { fill: var(--blue); stroke: var(--ink); stroke-width: 1.2; stroke-linejoin: round; }
+.m-japan-paper { fill: #fffdf8; stroke: var(--ink); stroke-width: 1.6; transition: fill .4s var(--ease); }
+.m-japan-sheet-lift, .m-japan-sheet-flutter { transform-box: fill-box; transform-origin: 50% 50%; }
+.m-japan-washi.is-up .m-japan-sheet-lift { transform: translateY(-10px) rotate(-1.4deg); }
+.m-japan-washi.is-up .m-japan-paper { fill: #fff; }
+
+.m-japan-sheet-btn { display: none; }
+html.js .m-japan .m-japan-sheet-btn {
+  display: block; position: absolute; padding: 0; border: 0; border-radius: 10px; background: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+html.js .m-japan .m-japan-sheet-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---- motion ---- */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .m-japan .m-japan-sheet { transition: transform 1.5s cubic-bezier(.22, .8, .24, 1) .2s; }
+  html.js .m-japan .m-japan-washi-stage:not(.is-in) .m-japan-sheet { transform: translateY(146px); }
+  html.js .m-japan .m-japan-sheet-shadow { transition: opacity 1.5s var(--ease) .2s; }
+  html.js .m-japan .m-japan-washi-stage:not(.is-in) .m-japan-sheet-shadow { opacity: .2; }
+  html.js .m-japan .m-japan-fibres > g, html.js .m-japan .m-japan-flecks { transition: opacity 1s var(--ease) .7s; }
+  html.js .m-japan .m-japan-fibres > g:nth-child(2) { transition-delay: .85s; }
+  html.js .m-japan .m-japan-fibres > g:nth-child(3) { transition-delay: 1s; }
+  html.js .m-japan .m-japan-fibres > g:nth-child(4) { transition-delay: 1.15s; }
+  html.js .m-japan .m-japan-fibres > g:nth-child(5) { transition-delay: 1.3s; }
+  html.js .m-japan .m-japan-fibres > g:nth-child(6) { transition-delay: 1.45s; }
+  html.js .m-japan .m-japan-flecks { transition-delay: 1.6s; }
+  html.js .m-japan .m-japan-washi-stage:not(.is-in) .m-japan-fibres > g,
+  html.js .m-japan .m-japan-washi-stage:not(.is-in) .m-japan-flecks { opacity: 0; }
+  html.js .m-japan .m-japan-guides, html.js .m-japan .m-japan-arrow { transition: opacity .8s var(--ease) 1s; }
+  html.js .m-japan .m-japan-washi-stage:not(.is-in) .m-japan-guides,
+  html.js .m-japan .m-japan-washi-stage:not(.is-in) .m-japan-arrow { opacity: 0; }
+
+  .m-japan-sheet-lift { transition: transform .65s var(--spring); }
+  .m-japan-washi-stage.is-rippling .m-japan-sheet-flutter { animation: m-japan-flutter .9s var(--ease) both; }
+  .m-japan-washi-stage.is-rippling .m-japan-drip { animation: m-japan-drip .75s cubic-bezier(.5, 0, .9, .5) both; }
+  .m-japan-washi-stage.is-rippling .m-japan-drip-b { animation-delay: .22s; }
+  .m-japan-washi-stage.is-rippling .m-japan-ring { animation: m-japan-ring 1s var(--ease) .68s both; }
+  .m-japan-washi-stage.is-rippling .m-japan-ring-b { animation-delay: .9s; }
+}
+@keyframes m-japan-flutter {
+  0% { transform: none; }
+  28% { transform: translateY(3px) rotate(1.6deg); }
+  58% { transform: translateY(-2px) rotate(-.9deg); }
+  100% { transform: none; }
+}
+@keyframes m-japan-drip {
+  0% { opacity: 0; transform: translateY(-2px) scale(.6); }
+  18% { opacity: 1; transform: translateY(0) scale(1); }
+  88% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(var(--fall)); }
+}
+@keyframes m-japan-ring {
+  0% { opacity: .95; transform: scale(.2); }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .m-japan-line, .m-japan-paper, .m-japan-sound { transition: none; }
+  html.js .m-japan .m-japan-note-fact, html.js .m-japan .m-japan-note-hint { transition: opacity .2s linear; transform: none; }
+}

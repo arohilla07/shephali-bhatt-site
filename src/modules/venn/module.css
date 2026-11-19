@@ -1,0 +1,192 @@
+/* Venn: a coda to About. Three pen-drawn circles and the place where they meet. */
+
+.m-venn {
+  position: relative;
+  display: grid;
+  gap: 26px;
+  margin-top: 56px;
+  padding-top: 44px;
+  border-top: 1px solid var(--rule);
+}
+.m-venn::before { /* little dowel on the hairline, like the section rules */
+  content: ""; position: absolute; left: 0; top: -4px; width: 7px; height: 7px; border-radius: 50%; background: var(--birch-3);
+}
+
+@media (min-width: 900px) {
+  .m-venn {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+    grid-template-areas: "head fig" "panel fig";
+    column-gap: 72px;
+    row-gap: 26px;
+    margin-top: 64px;
+    padding-top: 52px;
+  }
+  .m-venn .m-venn-head { grid-area: head; align-self: end; }
+  .m-venn .m-venn-fig { grid-area: fig; align-self: start; position: sticky; top: 96px; }
+  .m-venn.is-ready .m-venn-fig { align-self: center; position: static; }
+  .m-venn .m-venn-panel { grid-area: panel; align-self: start; }
+}
+
+/* ------------------------------------------------------------ heading */
+.m-venn-head { max-width: 34rem; }
+.m-venn-eyebrow { display: inline-flex; align-items: center; gap: 10px; }
+.m-venn-title {
+  font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.6vw, 2.35rem);
+  line-height: 1.05; letter-spacing: -.015em; margin-top: 12px;
+}
+.m-venn-title em { font-style: italic; color: var(--accent-ink); }
+.m-venn-quote { margin: 16px 0 0; padding-left: 16px; border-left: 2px solid var(--blue); }
+.m-venn-quote p { font-family: var(--serif); font-style: italic; font-size: 1.22rem; line-height: 1.35; color: var(--ink); }
+.m-venn-cite {
+  margin-top: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+}
+.m-venn-lede { margin-top: 14px; color: var(--ink-2); }
+
+/* ------------------------------------------------------------ diagram */
+.m-venn-fig { width: 100%; max-width: 540px; margin: 0 auto; }
+.m-venn-svg { width: 100%; height: auto; overflow: visible; -webkit-tap-highlight-color: transparent; }
+
+/* flat tints: three circles, three overlaps, and a clear middle */
+.m-venn {
+  --m-venn-a: var(--blue); --m-venn-b: var(--yellow); --m-venn-c: var(--rose);
+  --m-venn-ab: #c6dfca; --m-venn-ac: #d9cfeb; --m-venn-bc: #f6d2ab; --m-venn-abc: #fffbf1;
+}
+.m-venn-hot {
+  --m-venn-a: #c1d7f4; --m-venn-b: #f6e39c; --m-venn-c: #f1cac1;
+  --m-venn-ab: #b7d8be; --m-venn-ac: #cec1e7; --m-venn-bc: #f5c99c;
+}
+.m-venn-tint-a { fill: var(--m-venn-a); }
+.m-venn-tint-b { fill: var(--m-venn-b); }
+.m-venn-tint-c { fill: var(--m-venn-c); }
+.m-venn-tint-ab { fill: var(--m-venn-ab); }
+.m-venn-tint-ac { fill: var(--m-venn-ac); }
+.m-venn-tint-bc { fill: var(--m-venn-bc); }
+.m-venn-tint-abc { fill: var(--m-venn-abc); }
+.m-venn-fills { transition: opacity .4s var(--ease); }
+
+.m-venn-hot { opacity: 0; transition: opacity .4s var(--ease); }
+.m-venn-hot.is-on { opacity: 1; }
+.m-venn.has-active .m-venn-fills { opacity: .34; }
+
+.m-venn-heart { pointer-events: none; }
+.m-venn-pulse { opacity: .5; transform-box: fill-box; transform-origin: center; }
+
+.m-venn-line {
+  fill: none; stroke: var(--ink); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1 1; stroke-dashoffset: 0;
+  transition: opacity .4s var(--ease);
+}
+.m-venn-line.is-dim { opacity: .26; }
+
+.m-venn-loop {
+  fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1 1; stroke-dashoffset: 1; opacity: 0;
+  transition: opacity .25s var(--ease), stroke-dashoffset 0s linear .25s;
+}
+.m-venn-loop.is-on {
+  opacity: .9; stroke-dashoffset: 0;
+  transition: opacity .12s linear, stroke-dashoffset .8s cubic-bezier(.5, .1, .2, 1);
+}
+
+.m-venn-words { pointer-events: none; -webkit-user-select: none; user-select: none; }
+.m-venn-words text { text-anchor: middle; transition: opacity .4s var(--ease), fill .3s var(--ease); }
+.m-venn-name { font-family: var(--serif); font-size: 27px; letter-spacing: -.01em; fill: var(--ink); }
+.m-venn-key { font-family: var(--serif); font-style: italic; font-size: 20px; fill: var(--ink-2); }
+.m-venn-core { font-family: var(--serif); font-style: italic; font-size: 24px; fill: var(--accent-ink); }
+.m-venn-words .is-dim { opacity: .3; }
+@media (max-width: 599px) {
+  .m-venn-name { font-size: 29px; }
+  .m-venn-key { font-size: 23px; }
+  .m-venn-core { font-size: 27px; }
+  .m-venn-line { stroke-width: 2.2; }
+  .m-venn-loop { stroke-width: 2; }
+}
+
+.m-venn-hit { fill: transparent; pointer-events: all; cursor: pointer; }
+
+/* ------------------------------------------------------------ notes (plain list without JS) */
+.m-venn-notes { background: var(--wall); border-radius: 18px; padding: 6px 24px; }
+.m-venn-note { padding: 16px 0; border-top: 1px solid var(--rule); }
+.m-venn-note:first-child, .m-venn-rest + .m-venn-note { border-top: 0; }
+.m-venn-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.m-venn-what { font-family: var(--serif); font-size: 1.5rem; line-height: 1.12; letter-spacing: -.01em; margin-top: 6px; color: var(--ink); }
+.m-venn-text { font-size: 15.5px; line-height: 1.55; color: var(--ink-2); margin-top: 8px; max-width: 34rem; }
+.m-venn-note[data-region="abc"] .m-venn-what { font-style: italic; font-size: 1.9rem; line-height: 1.05; color: var(--accent-ink); }
+
+/* with JS: one note at a time, stacked so the card never changes height */
+.m-venn.is-ready .m-venn-notes { display: grid; padding: 22px 24px 24px; }
+.m-venn.is-ready .m-venn-note {
+  grid-area: 1 / 1; padding: 0; border: 0;
+  opacity: 0; pointer-events: none; transform: translateY(6px);
+  transition: opacity .22s var(--ease), transform .22s var(--ease);
+}
+.m-venn.is-ready .m-venn-note.is-on {
+  opacity: 1; pointer-events: auto; transform: none;
+  transition: opacity .4s var(--ease) .1s, transform .5s var(--ease) .1s;
+}
+.m-venn.is-ready .m-venn-rest { align-self: center; }
+.m-venn.is-ready .m-venn-rest .m-venn-text { font-family: var(--serif); font-size: 1.3rem; line-height: 1.3; color: var(--ink); margin-top: 8px; }
+
+/* ------------------------------------------------------------ chips */
+.m-venn-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.m-venn-chips[hidden] { display: none; }
+.m-venn-chip {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 0 14px 0 8px;
+  border: 1px solid var(--rule-strong); border-radius: 999px; background: #fff;
+  font-size: 13.5px; line-height: 1; color: var(--ink-2); white-space: nowrap; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color .2s var(--ease), background-color .2s var(--ease), color .2s var(--ease), transform .25s var(--spring);
+}
+.m-venn-chip:hover, .m-venn-chip.is-on { border-color: var(--ink); color: var(--ink); }
+.m-venn-chip:active { transform: scale(.97); }
+.m-venn-chip[aria-pressed="true"] { background: var(--accent-wash); border-color: var(--accent); color: var(--accent-ink); }
+.m-venn-ico { width: 24px; height: 22px; flex: none; }
+.m-venn-ico-rings { fill: none; stroke: currentColor; stroke-width: .9; }
+.m-venn-ico-on { fill: var(--accent); opacity: .78; }
+@media (pointer: coarse) { .m-venn-chip { min-height: 42px; } }
+
+/* ------------------------------------------------------------ motion */
+@media (prefers-reduced-motion: no-preference) {
+  /* the pen draws each circle once the diagram scrolls into view */
+  html.js .m-venn:not(.is-drawn) .m-venn-line,
+  html.js .m-venn:not(.is-drawn) .m-venn-fill,
+  html.js .m-venn:not(.is-drawn) .m-venn-words text,
+  html.js .m-venn:not(.is-drawn) .m-venn-heart { opacity: 0; }
+
+  html.js .m-venn.is-drawn .m-venn-line { animation: m-venn-draw 1.25s cubic-bezier(.55, .08, .25, 1) backwards; }
+  html.js .m-venn.is-drawn .m-venn-line-b { animation-delay: .28s; }
+  html.js .m-venn.is-drawn .m-venn-line-c { animation-delay: .56s; }
+
+  html.js .m-venn.is-drawn .m-venn-fill { animation: m-venn-fill-in .9s var(--ease) .55s backwards; }
+  html.js .m-venn.is-drawn .m-venn-tint-b { animation-delay: .83s; }
+  html.js .m-venn.is-drawn .m-venn-tint-c { animation-delay: 1.11s; }
+  html.js .m-venn.is-drawn .m-venn-tint-ab { animation-delay: 1.5s; }
+  html.js .m-venn.is-drawn .m-venn-tint-ac { animation-delay: 1.62s; }
+  html.js .m-venn.is-drawn .m-venn-tint-bc { animation-delay: 1.74s; }
+  html.js .m-venn.is-drawn .m-venn-tint-abc { animation-delay: 1.95s; }
+
+  html.js .m-venn.is-drawn .m-venn-words text { animation: m-venn-word-in .6s var(--ease) 1.05s backwards; }
+  html.js .m-venn.is-drawn .m-venn-words text:nth-child(2) { animation-delay: 1.2s; }
+  html.js .m-venn.is-drawn .m-venn-words text:nth-child(3) { animation-delay: 1.35s; }
+  html.js .m-venn.is-drawn .m-venn-words .m-venn-key { animation-delay: 1.6s; }
+  html.js .m-venn.is-drawn .m-venn-words .m-venn-core { animation: m-venn-core-in .8s var(--spring) 2s backwards; transform-box: fill-box; transform-origin: center; }
+
+  /* the middle breathes, slowly, and only while it is on screen */
+  html.js .m-venn.is-drawn .m-venn-heart { animation: m-venn-fill-in 1.1s var(--ease) 2.1s backwards; }
+  .m-venn.is-drawn .m-venn-pulse { animation: m-venn-pulse 3.4s ease-in-out infinite alternate; animation-play-state: paused; }
+  .m-venn.is-drawn.is-live .m-venn-pulse { animation-play-state: running; }
+
+  .m-venn .m-venn-core { transform-box: fill-box; transform-origin: center; transition: opacity .4s var(--ease), transform .5s var(--spring); }
+  .m-venn[data-active="abc"] .m-venn-core { transform: scale(1.07); }
+}
+
+@keyframes m-venn-draw { from { stroke-dashoffset: 1; opacity: 0; } 6% { opacity: 1; } to { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes m-venn-fill-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes m-venn-word-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes m-venn-core-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+@keyframes m-venn-pulse { from { opacity: .12; transform: scale(.7); } to { opacity: .85; transform: scale(1.08); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .m-venn .m-venn-line { stroke-dashoffset: 0; }
+  .m-venn .m-venn-loop.is-on { stroke-dashoffset: 0; }
+}

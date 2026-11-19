@@ -755,3 +755,4 @@ html.warm .mode-btn.in-footer { background: transparent; border-color: transpare
 .offpage-lede { max-width: 40rem; font-size: 1.12rem; color: var(--ink-2); }
 .section-offpage > .interlude:first-of-type { padding-top: 40px; }
 @media (max-width: 1019px) { .nav .nav-extra { display: none; } }
+.inter-head .label { display: inline-flex; align-items: center; gap: 10px; }

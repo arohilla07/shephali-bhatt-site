@@ -1,0 +1,258 @@
+/* Off the clock: a catalogue spread of six small objects. Everything is scoped to .m-offclock. */
+
+.m-offclock .oc-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 32px; margin-bottom: 26px; }
+.m-offclock .oc-top .inter-head { margin-bottom: 0; }
+.m-offclock .oc-note-line { display: flex; flex-wrap: wrap; gap: 4px 0; padding-bottom: 6px; }
+.m-offclock .oc-note-line span + span::before { content: "\00B7"; margin: 0 .7em; color: var(--rule-strong); }
+.m-offclock .oc-hint { display: none; }
+
+/* ------------------------------------------------------------------ grid */
+.m-offclock .oc-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 960px) { .m-offclock .oc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+.m-offclock .oc-item { display: flex; min-width: 0; }
+
+/* ------------------------------------------------------------------ tile */
+.m-offclock .oc-tile {
+  --oc-tint: #f4f6f9;
+  position: relative; display: flex; flex-direction: column; flex: 1; min-width: 0;
+  background: #fff; border: 1px solid var(--rule); border-radius: 14px; box-shadow: var(--shadow-soft);
+}
+.m-offclock .oc-tile.is-held { transform: translateY(-5px); box-shadow: 0 2px 4px rgba(24, 32, 58, .05), 0 20px 36px -18px rgba(24, 32, 58, .28); }
+@media (hover: hover) {
+  .m-offclock .oc-tile:hover { transform: translateY(-5px); box-shadow: 0 2px 4px rgba(24, 32, 58, .05), 0 20px 36px -18px rgba(24, 32, 58, .28); }
+}
+.m-offclock .oc-tile.is-kbd { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.m-offclock .oc-t-yellow { --oc-tint: #fbf5db; }
+.m-offclock .oc-t-blue { --oc-tint: #eaf1fa; }
+.m-offclock .oc-t-green { --oc-tint: #e9f2eb; }
+.m-offclock .oc-t-rose { --oc-tint: #faece8; }
+.m-offclock .oc-t-birch { --oc-tint: #f8f1e3; }
+.m-offclock .oc-t-grey { --oc-tint: #f1f3f6; }
+
+.m-offclock .oc-stage { position: relative; margin: 8px 8px 0; height: 148px; border-radius: 8px; background: var(--oc-tint); }
+.m-offclock .oc-clip { position: absolute; inset: 0; overflow: hidden; border-radius: 8px; display: grid; place-items: center; }
+.m-offclock .oc-svg { display: block; height: 100%; width: auto; max-width: 100%; overflow: visible; }
+
+.m-offclock .oc-art {
+  position: absolute; left: 10px; bottom: -11px; z-index: 1; margin: 0;
+  padding: 3px 10px 3px 9px; background: #fff; border: 1px solid var(--rule); border-radius: 999px;
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.4; letter-spacing: .06em; color: var(--muted); white-space: nowrap;
+}
+.m-offclock .oc-art span { color: var(--ink); }
+
+.m-offclock .oc-tag { display: flex; flex-direction: column; flex: 1; padding: 22px 18px 17px; }
+.m-offclock .oc-name { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; margin: 0; font-family: var(--sans); font-weight: 400; line-height: 1.2; }
+.m-offclock .oc-name-word { font-weight: 700; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink); }
+.m-offclock .oc-desc { font-size: 13px; color: var(--muted); }
+.m-offclock .oc-cap { margin-top: 8px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+
+/* The button: a small chip in the corner, with a hit area that covers the illustration. */
+.m-offclock .oc-play { position: static; display: block; width: 0; height: 0; padding: 0; margin: 0; border: 0; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.m-offclock .oc-play::after { content: ""; position: absolute; left: 8px; right: 8px; top: 8px; height: 148px; border-radius: 8px; }
+.m-offclock .oc-play:focus-visible { outline: none; }
+.m-offclock .oc-play:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 2px; }
+html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
+.m-offclock .oc-play-chip {
+  position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center; background: #fff; border: 1px solid var(--rule-strong); color: var(--ink);
+}
+.m-offclock .oc-play-chip svg { display: block; width: 10px; height: 10px; margin-left: 1px; fill: currentColor; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; }
+.m-offclock .oc-tile.is-held .oc-play-chip { border-color: var(--ink); }
+.m-offclock .oc-tile.is-on .oc-play-chip { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+/* ------------------------------------------------------------------ poses (rest, then .is-on) */
+/* 1. Peti */
+.m-offclock .oc-lid { transform-origin: 22px 58px; transform: rotate(-3deg); }
+.m-offclock .oc-hop, .m-offclock .oc-roll { transform-box: fill-box; transform-origin: 50% 50%; }
+.m-offclock .oc-rays { opacity: 0; }
+.m-offclock .is-on .oc-lid { transform: rotate(-26deg); }
+.m-offclock .is-on .oc-hop { transform: translateY(-7px) rotate(-7deg); }
+.m-offclock .is-on .oc-roll { transform: translateX(15px) rotate(64deg); }
+.m-offclock .is-on .oc-rays { opacity: .65; }
+
+/* 2. Beläj */
+.m-offclock .oc-rope, .m-offclock .oc-write { stroke-dasharray: 1 1.1; stroke-dashoffset: 1.05; }
+.m-offclock .oc-gate { transform-origin: 125.6px 86px; transform: rotate(-15deg); }
+.m-offclock .oc-click { opacity: 0; }
+.m-offclock .is-on .oc-rope, .m-offclock .is-on .oc-write { stroke-dashoffset: 0; }
+.m-offclock .is-on .oc-gate { transform: rotate(0deg); }
+
+/* 3. Takk */
+.m-offclock .oc-book { transform: translateX(-30px); }
+.m-offclock .oc-cover, .m-offclock .oc-inside { transform-origin: 100px 80px; }
+.m-offclock .oc-inside { transform: scaleX(0); }
+.m-offclock .oc-smile { opacity: 0; }
+.m-offclock .oc-pencil-pos { transform: translate(146px, 124px) rotate(-40deg); }
+.m-offclock .is-on .oc-book { transform: translateX(0); }
+.m-offclock .is-on .oc-cover { transform: scaleX(0); }
+.m-offclock .is-on .oc-inside { transform: scaleX(1); }
+.m-offclock .is-on .oc-smile { opacity: 1; }
+.m-offclock .is-on .oc-pencil-pos { transform: translate(109px, 70px) rotate(0deg); }
+.m-offclock .is-on .oc-pencil-track { transform: translateX(37px); }
+
+/* 4. Hänga */
+.m-offclock .oc-hang { transform-origin: 100px 24px; }
+.m-offclock .oc-swingtag { transform-origin: 100px 90px; }
+
+/* 5. Kassett */
+.m-offclock .oc-reel, .m-offclock .oc-pack, .m-offclock .oc-note, .m-offclock .oc-dot { transform-box: fill-box; transform-origin: 50% 50%; }
+.m-offclock .oc-pack-l { transform: scale(1.25); }
+.m-offclock .oc-pack-r { transform: scale(.72); }
+.m-offclock .oc-note { opacity: 0; }
+.m-offclock .is-on .oc-pack-l { transform: scale(.72); }
+.m-offclock .is-on .oc-pack-r { transform: scale(1.25); }
+.m-offclock .is-on .oc-reel { transform: rotate(600deg); }
+
+/* 6. Stilla */
+.m-offclock .oc-front, .m-offclock .oc-back, .m-offclock .oc-phone { transform-origin: 100px 80px; }
+.m-offclock .oc-back { transform: scaleX(0); }
+.m-offclock .oc-zz { opacity: 0; }
+.m-offclock .is-on .oc-front { transform: scaleX(0); }
+.m-offclock .is-on .oc-back { transform: scaleX(1); }
+.m-offclock .is-on .oc-dot { opacity: 0; transform: scale(.3); }
+.m-offclock .is-on .oc-zz { opacity: .7; }
+
+/* ------------------------------------------------------------------ reduced motion: poses only */
+@media (prefers-reduced-motion: reduce) {
+  .m-offclock .is-on .oc-hang { transform: rotate(6deg); }
+  .m-offclock .is-on .oc-swingtag { transform: rotate(-6deg); }
+  .m-offclock .is-on .oc-note { opacity: 1; }
+  .m-offclock .is-on .oc-reel { transform: rotate(40deg); }
+}
+
+/* ------------------------------------------------------------------ motion */
+@media (prefers-reduced-motion: no-preference) {
+  /* staggered entrance */
+  .m-offclock .oc-item { transition: opacity .8s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--i) * 80ms + 60ms); }
+  html.js .m-offclock:not(.is-in) .oc-item { opacity: 0; transform: translateY(26px); }
+
+  .m-offclock .oc-tile { transition: transform .45s var(--spring), box-shadow .3s var(--ease); }
+  .m-offclock .oc-play-chip { transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .35s var(--spring); }
+  .m-offclock .oc-tile.is-on .oc-play-chip { transform: scale(1.08); }
+
+  /* 1. Peti: the lid lifts, the top mango hops, the loose one rolls */
+  .m-offclock .oc-lid { transition: transform .5s var(--ease); }
+  .m-offclock .oc-hop { transition: transform .4s var(--ease); }
+  .m-offclock .oc-roll { transition: transform .7s cubic-bezier(.4, 0, .3, 1); }
+  .m-offclock .oc-rays { transition: opacity .2s var(--ease); }
+  .m-offclock .is-on .oc-lid { transition: transform .7s var(--spring); }
+  .m-offclock .is-on .oc-hop { transition: transform .55s var(--spring) .16s; }
+  .m-offclock .is-on .oc-roll { transition: transform 1s cubic-bezier(.25, .9, .35, 1.12) .1s; }
+  .m-offclock .is-on .oc-rays { transition: opacity .35s var(--ease) .38s; }
+
+  /* 2. Beläj: rope up the front, over the bar, down the back; then the gate */
+  .m-offclock .oc-rope-b { transition: stroke-dashoffset .26s cubic-bezier(.5, 0, 1, .8); }
+  .m-offclock .oc-rope-f { transition: stroke-dashoffset .3s cubic-bezier(0, .3, .5, 1) .24s; }
+  .m-offclock .oc-gate { transition: transform .3s var(--ease); }
+  .m-offclock .is-on .oc-rope-f { transition: stroke-dashoffset .55s cubic-bezier(.45, 0, .9, .75); }
+  .m-offclock .is-on .oc-rope-b { transition: stroke-dashoffset .5s cubic-bezier(.1, .3, .45, 1) .54s; }
+  .m-offclock .is-on .oc-gate { transition: transform .34s cubic-bezier(.3, 1.9, .6, 1) 1.08s; }
+  .m-offclock .is-on.is-play .oc-click { animation: m-offclock-flash .6s ease-out 1.16s both; }
+
+  /* 3. Takk: cover turns, pencil comes over, one line and a smile */
+  .m-offclock .oc-book { transition: transform .5s var(--ease) .1s; }
+  .m-offclock .oc-inside { transition: transform .2s cubic-bezier(.5, 0, 1, .7); }
+  .m-offclock .oc-cover { transition: transform .3s cubic-bezier(0, .4, .4, 1) .2s; }
+  .m-offclock .oc-write { transition: stroke-dashoffset .18s linear; }
+  .m-offclock .oc-smile { transition: opacity .15s linear; }
+  .m-offclock .oc-pencil-pos { transition: transform .5s var(--ease); }
+  .m-offclock .oc-pencil-track { transition: transform .3s var(--ease); }
+  .m-offclock .is-on .oc-book { transition: transform .55s var(--ease); }
+  .m-offclock .is-on .oc-cover { transition: transform .24s cubic-bezier(.5, 0, 1, .7); }
+  .m-offclock .is-on .oc-inside { transition: transform .36s cubic-bezier(.2, 1.3, .5, 1) .24s; }
+  .m-offclock .is-on .oc-pencil-pos { transition: transform .5s var(--ease) .32s; }
+  .m-offclock .is-on .oc-pencil-track { transition: transform .8s linear .86s; }
+  .m-offclock .is-on .oc-write { transition: stroke-dashoffset .8s linear .86s; }
+  .m-offclock .is-on .oc-smile { transition: opacity .3s var(--ease) 1.72s; }
+
+  /* 4. Hänga: a damped swing, with the little tag lagging behind */
+  .m-offclock .is-play .oc-hang { animation: m-offclock-swing 2.7s cubic-bezier(.37, 0, .63, 1) both; }
+  .m-offclock .is-play .oc-swingtag { animation: m-offclock-tag 2.7s cubic-bezier(.37, 0, .63, 1) .06s both; }
+
+  /* 5. Kassett: tape winds across, reels turn, notes drift up; it rewinds when you leave */
+  .m-offclock .oc-reel { transition: transform .8s cubic-bezier(.4, 0, .3, 1); }
+  .m-offclock .oc-pack { transition: transform .8s cubic-bezier(.4, 0, .3, 1); }
+  .m-offclock .is-on .oc-reel { transition: transform 2.4s cubic-bezier(.3, .2, .25, 1); }
+  .m-offclock .is-on .oc-pack { transition: transform 2.4s cubic-bezier(.3, .2, .25, 1); }
+  .m-offclock .is-on.is-play .oc-note { animation: m-offclock-note 1.5s cubic-bezier(.3, .6, .4, 1) calc(var(--n) * .32s + .2s) both; }
+
+  /* 6. Stilla: the dot goes, then the phone turns over */
+  .m-offclock .oc-zz { transition: opacity .15s linear; }
+  .m-offclock .oc-back { transition: transform .2s cubic-bezier(.5, 0, 1, .7); }
+  .m-offclock .oc-front { transition: transform .3s cubic-bezier(0, .4, .4, 1) .2s; }
+  .m-offclock .oc-dot { transition: opacity .3s var(--ease) .5s, transform .45s var(--spring) .5s; }
+  .m-offclock .is-on .oc-dot { transition: opacity .32s var(--ease), transform .32s var(--ease); }
+  .m-offclock .is-on .oc-front { transition: transform .22s cubic-bezier(.5, 0, 1, .7) .34s; }
+  .m-offclock .is-on .oc-back { transition: transform .36s cubic-bezier(.2, 1.4, .5, 1) .56s; }
+  .m-offclock .is-on .oc-zz { transition: opacity .5s var(--ease) 1s; }
+  .m-offclock .is-on.is-play .oc-phone { animation: m-offclock-hop .6s cubic-bezier(.3, 0, .4, 1) .3s both; }
+
+  /* replaying: snap back to rest without easing, then let go */
+  .m-offclock .oc-tile.is-reset .oc-svg * { transition: none !important; animation: none !important; }
+}
+
+@keyframes m-offclock-swing {
+  0% { transform: rotate(0deg); }
+  11% { transform: rotate(9deg); }
+  28% { transform: rotate(-7.5deg); }
+  45% { transform: rotate(5.5deg); }
+  61% { transform: rotate(-3.6deg); }
+  75% { transform: rotate(2.1deg); }
+  88% { transform: rotate(-.9deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes m-offclock-tag {
+  0% { transform: rotate(0deg); }
+  11% { transform: rotate(-9deg); }
+  28% { transform: rotate(10deg); }
+  45% { transform: rotate(-8deg); }
+  61% { transform: rotate(5.5deg); }
+  75% { transform: rotate(-3.5deg); }
+  88% { transform: rotate(1.6deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes m-offclock-flash {
+  0% { opacity: 0; transform: translate(-3px, 3px); }
+  35% { opacity: .8; transform: translate(0, 0); }
+  100% { opacity: 0; transform: translate(2px, -2px); }
+}
+@keyframes m-offclock-note {
+  0% { opacity: 0; transform: translate(0, 12px) rotate(-10deg) scale(.6); }
+  22% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; transform: translate(7px, -22px) rotate(12deg) scale(1); }
+}
+@keyframes m-offclock-hop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+}
+
+/* ------------------------------------------------------------------ pager (phone row only) */
+.m-offclock .oc-pager { display: none; }
+
+/* ------------------------------------------------------------------ desktop niceties */
+@media (min-width: 960px) {
+  .m-offclock .oc-hint { display: inline; }
+}
+@media (min-width: 600px) and (max-width: 959px) {
+  .m-offclock .oc-stage, .m-offclock .oc-play::after { height: 160px; }
+}
+
+/* ------------------------------------------------------------------ phone: one snapping row */
+@media (max-width: 599px) {
+  .m-offclock .oc-top { margin-bottom: 14px; }
+  .m-offclock .oc-grid {
+    display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding: 0 var(--gutter);
+    margin: 0 calc(var(--gutter) * -1); padding: 8px var(--gutter) 26px;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  }
+  .m-offclock .oc-grid::-webkit-scrollbar { display: none; }
+  .m-offclock .oc-item { flex: 0 0 min(76%, 280px); scroll-snap-align: start; }
+  .m-offclock .oc-stage, .m-offclock .oc-play::after { height: 156px; }
+  .m-offclock .oc-tile.is-held { transform: translateY(-3px); }
+  html.js .m-offclock .oc-pager { display: flex; justify-content: center; gap: 7px; margin: -6px 0 0; }
+  .m-offclock .oc-pager i { width: 6px; height: 6px; border-radius: 50%; background: var(--rule-strong); transition: background-color .25s var(--ease), transform .25s var(--ease); }
+  .m-offclock .oc-pager i.is-now { background: var(--accent); transform: scale(1.35); }
+}

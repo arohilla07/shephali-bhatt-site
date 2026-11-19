@@ -1,0 +1,304 @@
+/* Quotes: a white pegboard of her own lines. Everything is scoped to .m-quotes. */
+
+.m-quotes { --mq-peg-y: 20px; }
+.m-quotes .inter-head { margin-bottom: 24px; }
+.m-quotes .inter-head .label { display: inline-flex; align-items: center; gap: 10px; }
+
+/* ---- the board: white panel, staggered slots like a SKADIS pegboard ---- */
+.m-quotes-board {
+  --mq-cols: 12;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  column-gap: 22px;
+  row-gap: 22px;
+  margin: 0;
+  padding: 6px 16px 18px;
+  list-style: none;
+  /* the white rim is the border, so the field of holes never gets cut off at an edge */
+  border: 12px solid #fff;
+  border-radius: 20px;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Cg fill='%23ebeff4' stroke='%23d9dfe8' stroke-width='.8'%3E%3Crect x='6.75' y='3.5' width='4.5' height='11' rx='2.25'/%3E%3Crect x='24.75' y='21.5' width='4.5' height='11' rx='2.25'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 36px 36px;
+  background-repeat: round;
+  background-clip: padding-box;
+  box-shadow: 0 0 0 1px var(--rule-strong), var(--shadow-soft);
+}
+
+/* ---- one slot: a peg on the board and whatever hangs from it ---- */
+.m-quotes-slot {
+  position: relative;
+  z-index: 1;
+  grid-column: span 3;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transition: z-index 0s linear .4s;
+}
+.m-quotes-slot--s { grid-column: span 2; }
+.m-quotes-slot.is-up, .m-quotes-slot.is-focus { z-index: 4; transition-delay: 0s; }
+
+.m-quotes-peg {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: calc(var(--mq-peg-y) - 7px);
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border: 1.6px solid var(--ink);
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2.5px 0 rgba(24, 32, 58, .13);
+  pointer-events: none;
+}
+
+.m-quotes-hang {
+  width: 100%;
+  transform-origin: 50% var(--mq-peg-y);
+}
+
+/* ---- cards ---- */
+.m-quotes-card {
+  --mq-top: 6px;
+  position: relative;
+  width: 100%;
+  margin: var(--mq-top) 0 0;
+  padding: 36px 18px 15px;
+  border: 1px solid rgba(24, 32, 58, .13);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(24, 32, 58, .05), 0 9px 14px -11px rgba(24, 32, 58, .34);
+  transform-origin: 50% calc(var(--mq-peg-y) - var(--mq-top));
+  transform: rotate(var(--mq-r, 0deg));
+  transition: transform .55s var(--spring);
+}
+.m-quotes-card::after { /* the deeper shadow that fades in when a card is lifted */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: 0 26px 34px -20px rgba(24, 32, 58, .46), 0 8px 16px -10px rgba(24, 32, 58, .2);
+  opacity: 0;
+  transition: opacity .35s var(--ease);
+  pointer-events: none;
+}
+
+.m-quotes-card--blue { background: var(--blue); }
+.m-quotes-card--yellow { background: var(--yellow); }
+.m-quotes-card--green { background: var(--green); }
+.m-quotes-card--rose { background: var(--rose); }
+.m-quotes-card--ruled::before { /* the red line of an index card */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 31px;
+  border-top: 1.5px solid var(--rose);
+}
+
+/* default tilts by place on the board; the script deals new ones on shuffle */
+.m-quotes-slot:nth-child(9n+1) .m-quotes-card { --mq-r: -1.8deg; }
+.m-quotes-slot:nth-child(9n+2) .m-quotes-card { --mq-r: 3.2deg; }
+.m-quotes-slot:nth-child(9n+3) .m-quotes-card { --mq-r: 1.4deg; }
+.m-quotes-slot:nth-child(9n+4) .m-quotes-card { --mq-r: -2.6deg; }
+.m-quotes-slot:nth-child(9n+5) .m-quotes-card { --mq-r: 2.2deg; }
+.m-quotes-slot:nth-child(9n+6) .m-quotes-card { --mq-r: 1.6deg; }
+.m-quotes-slot:nth-child(9n+7) .m-quotes-card { --mq-r: -2.2deg; }
+.m-quotes-slot:nth-child(9n+8) .m-quotes-card { --mq-r: 2deg; }
+.m-quotes-slot:nth-child(9n+9) .m-quotes-card { --mq-r: -1.2deg; }
+
+/* how each kind hangs: --mq-top is the gap from the top of the slot to the paper */
+.m-quotes-slot--clip .m-quotes-card { --mq-top: 41px; padding-top: 24px; }
+.m-quotes-slot--tape .m-quotes-card { --mq-top: 16px; padding-top: 26px; transform-origin: 50% 0; }
+.m-quotes-slot--tag .m-quotes-card {
+  --mq-top: 43px;
+  padding: 34px 14px 14px;
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+  text-align: center;
+}
+.m-quotes-slot--hanger .m-quotes-card { --mq-top: 62px; padding: 20px 12px 13px; text-align: center; }
+
+/* ---- text ---- */
+.m-quotes-text { margin: 0; }
+.m-quotes-text p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.16;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-indent: -.42em;
+  padding-left: .42em;
+  text-wrap: pretty;
+}
+.m-quotes-text--big p { font-size: 23px; font-style: italic; text-indent: 0; padding-left: 0; }
+.m-quotes-src {
+  margin-top: 12px;
+  padding-left: .42em;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.45;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.m-quotes-slot--tag .m-quotes-src, .m-quotes-slot--hanger .m-quotes-src { padding-left: 0; margin-top: 9px; }
+
+/* ---- fixings: assembly-manual line art ---- */
+.m-quotes-fix { position: absolute; left: 50%; pointer-events: none; overflow: visible; }
+.m-quotes-line { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.m-quotes-line--thin { stroke-width: 1.3; }
+.m-quotes-line--faint { stroke-opacity: .35; }
+.m-quotes-fill-blue { fill: var(--blue); }
+.m-quotes-fill-yellow { fill: var(--yellow); }
+.m-quotes-fill-white { fill: #fff; }
+.m-quotes-fill-birch { fill: var(--birch-3); }
+.m-quotes-fix--clip { top: -32px; margin-left: -24px; }
+.m-quotes-fix--string { top: -33px; margin-left: -20px; }
+.m-quotes-fix--hanger { top: -55px; margin-left: -62px; }
+
+.m-quotes-shape { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.m-quotes-shape-paper { fill: var(--birch); stroke: rgba(24, 32, 58, .22); stroke-width: 1; stroke-linejoin: round; }
+.m-quotes-shape-shadow { fill: rgba(24, 32, 58, .1); transform: translateY(3px); }
+
+.m-quotes-tape {
+  position: absolute;
+  left: 50%;
+  top: -11px;
+  width: 88px;
+  height: 23px;
+  margin-left: -44px;
+  transform: rotate(-2.5deg);
+  background-color: var(--yellow);
+  background-image: repeating-linear-gradient(135deg, rgba(255, 255, 255, .55) 0 3px, rgba(255, 255, 255, 0) 3px 9px);
+  opacity: .9;
+  clip-path: polygon(0 0, 3% 12.5%, 0 25%, 3% 37.5%, 0 50%, 3% 62.5%, 0 75%, 3% 87.5%, 0 100%, 100% 100%, 97% 87.5%, 100% 75%, 97% 62.5%, 100% 50%, 97% 37.5%, 100% 25%, 97% 12.5%, 100% 0);
+  pointer-events: none;
+}
+.m-quotes-tape--blue { background-color: #b9d0ee; transform: rotate(2deg); }
+.m-quotes-tape--yellow { background-color: #f1dd8a; }
+
+/* ---- lifted: straight, a touch larger, deeper shadow ---- */
+.m-quotes-slot.is-up .m-quotes-card,
+.m-quotes-slot.is-focus .m-quotes-card { transform: rotate(0deg) scale(1.045); }
+.m-quotes-slot.is-up .m-quotes-card::after,
+.m-quotes-slot.is-focus .m-quotes-card::after { opacity: 1; }
+@media (hover: hover) {
+  .m-quotes-slot:hover { z-index: 5; transition-delay: 0s; }
+  .m-quotes-card:hover { transform: rotate(0deg) scale(1.045); }
+  .m-quotes-card:hover::after { opacity: 1; }
+}
+
+/* the script adds one real button per card, stretched over the paper */
+.m-quotes-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.m-quotes-hit:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* ---- footer row ---- */
+.m-quotes-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-top: 18px;
+}
+.m-quotes-note { margin: 0; }
+.m-quotes-note-narrow { display: none; }
+.m-quotes-note-live { display: none; }
+.m-quotes--live .m-quotes-note-live { display: inline; }
+.m-quotes-shuffle[hidden] { display: none; }
+.m-quotes-shuffle { margin-left: auto; cursor: pointer; }
+.m-quotes-shuffle-icon { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; transition: transform .5s var(--spring); }
+.m-quotes-shuffle:hover .m-quotes-shuffle-icon { transform: rotate(-12deg) scale(1.08); }
+.m-quotes-shuffle:active .m-quotes-shuffle-icon { transform: rotate(180deg); }
+
+/* ---- tablet: eight columns, three rows of two wide cards and one small ---- */
+@media (min-width: 720px) and (max-width: 1039px) {
+  .m-quotes-board { --mq-cols: 8; grid-template-columns: repeat(8, minmax(0, 1fr)); column-gap: 16px; padding: 4px 8px 16px; }
+  .m-quotes:not(.m-quotes--live) .m-quotes-slot:nth-child(5) { order: 1; }
+  .m-quotes:not(.m-quotes--live) .m-quotes-slot:nth-child(8),
+  .m-quotes:not(.m-quotes--live) .m-quotes-slot:nth-child(9) { order: 2; }
+  .m-quotes-text p { font-size: 20px; }
+  .m-quotes-card { padding-left: 14px; padding-right: 14px; }
+}
+
+/* ---- phone: the board becomes a rail of cards that snaps as it is swiped ---- */
+@media (max-width: 719px) {
+  .m-quotes-board {
+    --mq-cols: 0;
+    display: flex;
+    gap: 16px;
+    padding: 4px 12px 26px;
+    border-width: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-radius: 16px;
+    background-attachment: local;
+  }
+  .m-quotes-board::-webkit-scrollbar { display: none; }
+  .m-quotes-board::after { content: ""; flex: 0 0 2px; }
+  .m-quotes-slot { flex: 0 0 236px; scroll-snap-align: start; }
+  .m-quotes-slot--s { flex-basis: 170px; }
+  .m-quotes-note-wide { display: none; }
+  .m-quotes-note-narrow { display: inline; }
+  .m-quotes-foot { margin-top: 16px; }
+  .m-quotes-card::after { box-shadow: 0 18px 22px -16px rgba(24, 32, 58, .42), 0 6px 12px -9px rgba(24, 32, 58, .2); }
+}
+
+/* ---- motion: drop onto the peg, swing, settle; two cards keep a slow sway ---- */
+@media (prefers-reduced-motion: no-preference) {
+  .m-quotes--armed .m-quotes-slot:not(.is-hung) .m-quotes-hang { opacity: 0; }
+  .m-quotes--armed .m-quotes-slot.is-hung:not(.is-set) .m-quotes-hang {
+    animation: m-quotes-drop 1.3s var(--mq-d, 0ms) backwards;
+  }
+  .m-quotes--armed .m-quotes-slot--sway.is-set .m-quotes-hang {
+    animation: m-quotes-sway 6.5s ease-in-out infinite;
+  }
+  .m-quotes-slot:nth-child(even) .m-quotes-hang { --mq-s: -1; }
+  .m-quotes--away .m-quotes-hang,
+  .m-quotes-slot.is-up .m-quotes-hang,
+  .m-quotes-slot.is-focus .m-quotes-hang { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .m-quotes-slot:hover .m-quotes-hang { animation-play-state: paused; }
+}
+
+@keyframes m-quotes-drop {
+  0% { opacity: 0; transform: translateY(-40px) rotate(calc(var(--mq-s, 1) * -7deg)); animation-timing-function: cubic-bezier(.55, 0, .9, .55); }
+  20% { opacity: 1; transform: translateY(0) rotate(calc(var(--mq-s, 1) * 5.5deg)); animation-timing-function: ease-in-out; }
+  40% { opacity: 1; transform: translateY(0) rotate(calc(var(--mq-s, 1) * -3.6deg)); animation-timing-function: ease-in-out; }
+  58% { opacity: 1; transform: translateY(0) rotate(calc(var(--mq-s, 1) * 2.2deg)); animation-timing-function: ease-in-out; }
+  74% { opacity: 1; transform: translateY(0) rotate(calc(var(--mq-s, 1) * -1.2deg)); animation-timing-function: ease-in-out; }
+  88% { opacity: 1; transform: translateY(0) rotate(calc(var(--mq-s, 1) * .5deg)); animation-timing-function: ease-in-out; }
+  100% { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+@keyframes m-quotes-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1.4deg); }
+  75% { transform: rotate(-1.4deg); }
+}

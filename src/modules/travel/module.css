@@ -1,0 +1,261 @@
+/* Travels light: a boarding pass, one cabin bag, three passport stamps. */
+
+.m-travel-stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+.m-travel-pass, .m-travel-side, .m-travel-trip { min-width: 0; }
+
+/* ------------------------------------------------------------ boarding pass */
+.m-travel-pass { position: relative; z-index: 1; display: flex; align-items: stretch; max-width: 780px; color: var(--ink); }
+.m-travel-main {
+  flex: 1 1 auto; min-width: 0; overflow: hidden; background: #fff;
+  border: 1.5px solid var(--ink); border-right-style: dashed; border-radius: 14px 9px 9px 14px;
+}
+.m-travel-band {
+  display: flex; justify-content: space-between; gap: 12px; padding: 9px 24px 8px;
+  background: var(--blue); border-bottom: 1.5px solid var(--ink);
+  font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
+}
+.m-travel-band-r { color: var(--ink-2); }
+.m-travel-body { display: grid; gap: 14px; padding: 16px 24px 18px; }
+.m-travel-f { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.m-travel-k {
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.35; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+}
+.m-travel-v { font-family: var(--serif); font-size: 25px; line-height: 1.05; letter-spacing: -.005em; }
+.m-travel-v-em { font-style: italic; color: var(--accent-ink); }
+.m-travel-f-name .m-travel-v { font-size: 31px; }
+
+.m-travel-leg { display: grid; grid-template-columns: auto minmax(34px, 1fr) auto; align-items: center; column-gap: 18px; }
+.m-travel-code { font-size: 60px; line-height: .92; letter-spacing: -.01em; }
+.m-travel-city { font-size: 13px; line-height: 1.3; color: var(--ink-2); }
+.m-travel-dest { font-style: italic; font-size: 28px; line-height: 1; max-width: 6.6em; text-wrap: balance; }
+.m-travel-air { /* a dashed leg with a dot at one end and an arrowhead at the other */
+  position: relative; height: 1.5px; margin-top: 10px;
+  background: repeating-linear-gradient(90deg, var(--ink) 0 5px, transparent 5px 10px);
+}
+.m-travel-air::before { content: ""; position: absolute; left: -3px; top: -3px; width: 7.5px; height: 7.5px; border-radius: 50%; background: #fff; border: 1.5px solid var(--ink); }
+.m-travel-air::after { content: ""; position: absolute; right: 0; top: -3.75px; width: 9px; height: 9px; border-top: 1.5px solid var(--ink); border-right: 1.5px solid var(--ink); background: #fff; transform: rotate(45deg); }
+
+.m-travel-row { display: flex; flex-wrap: wrap; gap: 10px 40px; padding-top: 14px; border-top: 1px dashed var(--rule-strong); }
+
+/* the tear-off stub is a button */
+.m-travel-stub {
+  flex: none; display: flex; flex-direction: column; width: 178px; margin: 0 0 0 -1.5px; padding: 0; overflow: hidden;
+  background: #fff; color: var(--ink); text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  border: 1.5px solid var(--ink); border-left-style: dashed; border-radius: 9px 14px 14px 9px;
+  --tear: translate(8px, 7px) rotate(-5deg);
+  transform-origin: 0 0; transition: transform .55s var(--spring);
+}
+.m-travel-stub:focus-visible { outline-offset: 4px; border-radius: 9px 14px 14px 9px; }
+.m-travel-stub .m-travel-band { padding-left: 16px; padding-right: 16px; }
+.m-travel-stub-body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; padding: 16px 16px 13px; }
+.m-travel-stub-count, .m-travel-stub-code { display: flex; flex-direction: column; }
+.m-travel-stub-code { gap: 9px; }
+.m-travel-count { display: block; height: 1em; margin-top: 2px; overflow: hidden; font-family: var(--serif); font-size: 76px; line-height: 1; }
+.m-travel-roll { display: flex; flex-direction: column; transform: translateY(-66.6667%); }
+.m-travel-roll > span { display: block; height: 1em; }
+.m-travel-bars { width: 100%; height: 40px; }
+.m-travel-tear {
+  display: flex; align-items: center; gap: 7px; color: var(--accent-ink);
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.35; letter-spacing: .13em; text-transform: uppercase;
+}
+.m-travel-tear svg { flex: none; width: 16px; height: 10px; }
+.m-travel-tear-b, .m-travel.is-torn .m-travel-tear-a { display: none; }
+.m-travel.is-torn .m-travel-tear-b { display: inline; }
+html.no-js .m-travel-stub { cursor: default; }
+html.no-js .m-travel-tear { visibility: hidden; }
+
+@media (hover: hover) {
+  .m-travel-stub:hover { transform: translate(2px, 1px) rotate(-1deg); }
+}
+.m-travel.is-torn .m-travel-stub { transform: var(--tear); }
+
+/* ------------------------------------------------------------ cabin bag + remark slip */
+.m-travel-side { display: grid; grid-template-columns: minmax(0, 1fr) 132px; gap: 14px; align-items: center; max-width: 780px; }
+.m-travel-bag-art { width: 100%; height: auto; overflow: visible; }
+.m-travel-qty { font-family: var(--mono); font-size: 15px; font-weight: 500; letter-spacing: .02em; }
+.m-travel-tag { transform-box: view-box; transform-origin: 211px 106px; }
+.m-travel-cap {
+  margin-top: 6px; text-align: center; color: var(--muted);
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.5; letter-spacing: .1em; text-transform: uppercase;
+}
+
+.m-travel-remark { order: -1; display: grid; align-items: center; }
+.m-travel-remark > * { grid-area: 1 / 1; }
+.m-travel-slot {
+  display: none; align-self: stretch; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  padding: 14px; border: 1.5px dashed var(--rule-strong); border-radius: 10px; color: var(--muted); text-align: center;
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase;
+}
+.m-travel-slot svg { width: 30px; height: auto; overflow: visible; }
+.m-travel-slip {
+  position: relative; padding: 13px 16px 15px; border: 1.5px solid var(--ink); border-radius: 10px;
+  background: #fbf5d6; background: color-mix(in srgb, var(--yellow) 45%, #fff);
+  transform: rotate(-1.2deg);
+}
+.m-travel-slip-q { margin-top: 5px; font-family: var(--serif); font-style: italic; font-size: 25px; line-height: 1.1; }
+.m-travel-slip-t { margin-top: 7px; font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
+
+/* ------------------------------------------------------------ route: flight path + stamps */
+.m-travel-route { position: relative; aspect-ratio: 760 / 170; }
+.m-travel-sky, .m-travel-fly { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.m-travel-fly { z-index: 2; }
+.m-travel-m { display: none; }
+.m-travel-trail { stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 5 7; }
+.m-travel-wipe { stroke-dasharray: 1; stroke-dashoffset: 0; }
+
+.m-travel-stamps { position: absolute; inset: 0; z-index: 1; }
+.m-travel-stop { position: absolute; width: 14.74%; transform: translate(-50%, -50%); }
+.m-travel-stop-1 { left: 12.105%; top: 65.882%; --r: -9deg; color: var(--accent-ink); }
+.m-travel-stop-2 { left: 62.895%; top: 44.706%; --r: 6deg; color: var(--ink); }
+.m-travel-stop-3 { left: 87.368%; top: 63.529%; --r: -5deg; color: var(--accent-ink); }
+.m-travel-stamp {
+  position: relative; display: block; width: 100%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%;
+  background: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  transform: rotate(var(--r));
+}
+.m-travel-stamp:focus-visible { outline-offset: 4px; border-radius: 50%; }
+.m-travel-stamp svg { width: 100%; height: 100%; overflow: visible; }
+.m-travel-stamp::after { /* the ring of ink a stamp leaves as it lands */
+  content: ""; position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid currentColor; opacity: 0; pointer-events: none;
+}
+.m-travel-st-top { font-family: var(--mono); font-weight: 500; font-size: 12.5px; letter-spacing: 3px; }
+.m-travel-st-bot { font-family: var(--mono); font-weight: 500; font-size: 7.4px; letter-spacing: 1.5px; }
+.m-travel-disc { fill: #fff; }
+.m-travel-stop-1 .m-travel-disc { fill: var(--yellow); }
+.m-travel-stop-2 .m-travel-disc { fill: var(--blue); }
+
+.m-travel-caption { margin-top: 14px; }
+.m-travel-hint {
+  display: none; color: var(--muted);
+  font-family: var(--mono); font-size: 11px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase;
+}
+.m-travel-notes { display: grid; gap: 8px; }
+.m-travel-note { line-height: 1.3; text-wrap: balance; }
+.m-travel-note-k {
+  display: inline-block; margin-right: 8px; padding: 2px 9px 1px; border: 1px solid currentColor; border-radius: 999px;
+  color: var(--accent-ink); vertical-align: .22em;
+  font-family: var(--mono); font-size: 10.5px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase;
+}
+.m-travel-note-t { font-family: var(--serif); font-size: 21px; line-height: 1.25; }
+.m-travel-note.is-shown .m-travel-note-k { background: var(--accent-wash); }
+
+/* ------------------------------------------------------------ layouts */
+@media (max-width: 639px) {
+  .m-travel-pass { flex-direction: column; }
+  .m-travel-main { border-right-style: solid; border-bottom-style: dashed; border-radius: 14px 14px 9px 9px; }
+  .m-travel-band { padding-left: 18px; padding-right: 18px; }
+  .m-travel-body { gap: 12px; padding: 14px 18px 15px; }
+  .m-travel-f-name .m-travel-v { font-size: 27px; }
+  .m-travel-code { font-size: 50px; }
+  .m-travel-dest { font-size: 24px; }
+  .m-travel-leg { column-gap: 14px; }
+  .m-travel-v { font-size: 22px; }
+  .m-travel-row { justify-content: space-between; gap: 10px 14px; padding-top: 12px; }
+  .m-travel-stub {
+    width: auto; margin: -1.5px 0 0; border-left-style: solid; border-top-style: dashed; border-radius: 9px 9px 14px 14px;
+    --tear: translate(5px, 9px) rotate(2.2deg);
+  }
+  .m-travel-stub:focus-visible { border-radius: 9px 9px 14px 14px; }
+  .m-travel-stub .m-travel-band { display: none; }
+  .m-travel-stub-body { flex-direction: row; align-items: center; gap: 22px; padding: 11px 18px 12px; }
+  .m-travel-stub-count { flex: none; }
+  .m-travel-stub-code { flex: 1; min-width: 0; gap: 7px; }
+  .m-travel-count { font-size: 54px; }
+  .m-travel-bars { height: 36px; }
+  .m-travel-tear { justify-content: flex-end; }
+
+  .m-travel-route { aspect-ratio: 358 / 150; max-width: 460px; margin-inline: auto; }
+  .m-travel-d { display: none; }
+  .m-travel-m { display: block; }
+  .m-travel-stop { width: 23.46%; }
+  .m-travel-stop-1 { left: 12.291%; top: 66.667%; }
+  .m-travel-stop-2 { left: 50.838%; top: 38.667%; }
+  .m-travel-stop-3 { left: 84.358%; top: 66.667%; }
+  .m-travel-note-t { font-size: 19px; }
+  .m-travel-caption { margin-top: 12px; }
+}
+@media (hover: hover) and (max-width: 639px) {
+  .m-travel-stub:hover { transform: translate(1px, 2px) rotate(.5deg); }
+}
+@media (min-width: 640px) and (max-width: 999px) {
+  .m-travel-side { grid-template-columns: minmax(0, 1fr) 230px; gap: 28px; }
+  .m-travel-trip { max-width: 780px; }
+}
+@media (min-width: 1000px) {
+  .m-travel-stage {
+    grid-template-columns: minmax(0, 1fr) 270px; grid-template-areas: "pass side" "trip side";
+    column-gap: 56px; row-gap: 26px; align-items: start;
+  }
+  .m-travel-pass { grid-area: pass; }
+  .m-travel-trip { grid-area: trip; }
+  .m-travel-side { grid-area: side; display: block; max-width: none; }
+  .m-travel-remark { margin-top: 18px; }
+}
+@media (min-width: 1000px) and (max-width: 1159px) {
+  .m-travel-stage { grid-template-columns: minmax(0, 1fr) 240px; column-gap: 40px; }
+  .m-travel-stub { width: 160px; }
+}
+
+/* ------------------------------------------------------------ states that need both scripting and motion */
+@media (prefers-reduced-motion: no-preference) {
+  /* flight path draws itself, the plane follows (module.js drives both) */
+  html.js .m-travel:not(.is-done) .m-travel-wipe { stroke-dashoffset: 1; }
+  html.js .m-travel-plane { transition: opacity .35s var(--ease); }
+  html.js .m-travel:not(.is-go) .m-travel-plane { opacity: 0; }
+
+  /* stamps thump in one after another */
+  html.js .m-travel-stamp:not(.is-on) { opacity: 0; }
+  html.js .m-travel-stamp.is-thump { animation: m-travel-thump .55s var(--ease) both; }
+  html.js .m-travel-stamp.is-thump::after { animation: m-travel-ink .6s ease-out .24s both; }
+  html.js .m-travel-stamp.is-press { animation: m-travel-press .5s var(--ease) both; }
+  html.js .m-travel-stamp.is-press::after { animation: m-travel-ink .55s ease-out .13s both; }
+
+  /* one note at a time, in one line under the route */
+  html.js .m-travel-caption { display: grid; justify-items: center; text-align: center; }
+  html.js .m-travel-caption > *, html.js .m-travel-note { grid-area: 1 / 1; }
+  html.js .m-travel-hint { display: block; align-self: center; transition: opacity .4s var(--ease); }
+  html.js .m-travel:not(.is-done) .m-travel-hint, html.js .m-travel.has-note .m-travel-hint { opacity: 0; }
+  html.js .m-travel-notes { gap: 0; align-items: center; }
+  html.js .m-travel-note {
+    opacity: 0; visibility: hidden; transform: translateY(7px);
+    transition: opacity .25s var(--ease), transform .45s var(--spring), visibility 0s .25s;
+  }
+  html.js .m-travel-note.is-shown { opacity: 1; visibility: visible; transform: none; transition-delay: .08s, .08s, 0s; }
+
+  /* the remark slip waits until the stub is torn */
+  html.js .m-travel-slot { display: flex; transition: opacity .3s var(--ease); }
+  html.js .m-travel.is-torn .m-travel-slot { opacity: 0; }
+  html.js .m-travel-slip {
+    opacity: 0; visibility: hidden; transform: translateY(-16px) rotate(-5deg) scale(.95);
+    transition: opacity .25s var(--ease), transform .6s var(--spring), visibility 0s .25s;
+  }
+  html.js .m-travel.is-torn .m-travel-slip { opacity: 1; visibility: visible; transform: rotate(-1.2deg); transition-delay: .14s, .14s, 0s; }
+  html.js .m-travel-roll.is-rolling { animation: m-travel-roll .95s cubic-bezier(.3, 1.3, .5, 1) both; }
+  html.js .m-travel-stub.is-nudge { animation: m-travel-nudge 1s var(--ease) .35s both; }
+
+  /* the luggage tag swings while the module is on screen */
+  html.js .m-travel.is-live .m-travel-tag { animation: m-travel-swing 3.6s ease-in-out infinite alternate; }
+  html.js .m-travel.is-live .m-travel-swish { animation: m-travel-swish 3.6s ease-in-out infinite alternate; }
+}
+
+@keyframes m-travel-thump {
+  0% { opacity: 0; transform: rotate(calc(var(--r) - 18deg)) scale(1.9); }
+  50% { opacity: 1; transform: rotate(calc(var(--r) + 3deg)) scale(.9); }
+  74% { opacity: 1; transform: rotate(var(--r)) scale(1.05); }
+  100% { opacity: 1; transform: rotate(var(--r)) scale(1); }
+}
+@keyframes m-travel-press {
+  0% { transform: rotate(var(--r)) scale(1); }
+  28% { transform: rotate(calc(var(--r) + 4deg)) scale(.88); }
+  64% { transform: rotate(calc(var(--r) - 1deg)) scale(1.06); }
+  100% { transform: rotate(var(--r)) scale(1); }
+}
+@keyframes m-travel-ink { 0% { opacity: .5; transform: scale(.97); } 100% { opacity: 0; transform: scale(1.34); } }
+@keyframes m-travel-roll { from { transform: translateY(0); } to { transform: translateY(-66.6667%); } }
+@keyframes m-travel-nudge {
+  0%, 100% { transform: none; }
+  30% { transform: translate(3px, 2px) rotate(-1.8deg); }
+  60% { transform: translate(1px, 0) rotate(.4deg); }
+}
+@keyframes m-travel-swing { from { transform: rotate(-5deg); } to { transform: rotate(7deg); } }
+@keyframes m-travel-swish { 0%, 100% { opacity: .55; } 50% { opacity: .12; } }

@@ -1,0 +1,228 @@
+/* years: "Sixteen years, measured". Four counted figures and a folding birch ruler. */
+.m-years {
+  --m-years-top: 30px;   /* room above the ruler for the pin heads */
+  --m-years-h: 30px;     /* ruler thickness */
+  --m-years-col: 224px;  /* one ruler segment on small screens */
+  overflow-x: clip;
+}
+
+.m-years .label { display: inline-flex; align-items: center; gap: 10px; }
+
+/* ------------------------------------------------------------ figures */
+.m-years-figs {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 20px;
+  margin: 0; padding: 0; list-style: none;
+}
+.m-years-figs.m-years-three .m-years-fig:last-child { grid-column: 1 / -1; }
+.m-years-fig { position: relative; padding-top: 20px; min-width: 0; }
+.m-years-fig[hidden] { display: none; }
+/* dimension line with end ticks, as on an assembly drawing */
+.m-years-fig::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 1px;
+  background: var(--rule-strong); transform-origin: 0 50%;
+}
+.m-years-fig::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px;
+  border-left: 1px solid var(--ink-2); border-right: 1px solid var(--ink-2); pointer-events: none;
+}
+.m-years-num {
+  display: flex; align-items: baseline; gap: 8px;
+  font-family: var(--serif); font-size: clamp(3.5rem, 6.6vw, 5.5rem); line-height: .96; letter-spacing: -.02em;
+  color: var(--ink); font-variant-numeric: lining-nums tabular-nums; white-space: nowrap;
+}
+.m-years-n { display: inline-block; }
+.m-years-d { display: inline-block; width: 1ch; text-align: center; }
+.m-years-unit {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+  line-height: 1;
+}
+.m-years-unit.m-years-x { font-family: var(--sans); font-size: 19px; letter-spacing: 0; margin-left: -3px; }
+.m-years-cap {
+  margin-top: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+  line-height: 1.4; color: var(--ink);
+}
+.m-years-sub { margin-top: 5px; font-size: 14px; line-height: 1.45; color: var(--muted); max-width: 30ch; }
+
+@media (min-width: 860px) {
+  .m-years-figs { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 40px; }
+  .m-years-figs.m-years-three .m-years-fig:last-child { grid-column: auto; }
+}
+
+/* ------------------------------------------------------------ the ruler */
+.m-years-rail { margin-top: 34px; }
+.m-years-track { position: relative; }
+.m-years-stops {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) minmax(0, .74fr);
+  margin: 0; padding: 0; list-style: none;
+}
+.m-years-stop { position: relative; min-width: 0; }
+
+/* one birch segment per stop; neighbours overlap at a brass rivet, like a folding rule */
+.m-years-seg {
+  position: absolute; left: 0; right: -16px; top: var(--m-years-top); height: var(--m-years-h);
+  background: var(--birch); border: 1.6px solid var(--ink); border-radius: 5px;
+  transform-origin: 8px 50%; z-index: 1; pointer-events: none;
+}
+.m-years-stop:nth-child(even) .m-years-seg { top: calc(var(--m-years-top) + 3px); background: var(--birch-2); z-index: 0; }
+.m-years-stop:last-child .m-years-seg { right: 0; }
+.m-years-seg::before { /* graduations along both edges */
+  content: ""; position: absolute; left: 20px; right: 20px; top: 0; bottom: 0; color: var(--ink); opacity: .72;
+  background:
+    linear-gradient(90deg, currentColor 1.2px, transparent 1.2px) 0 0 / 8px 6px repeat-x,
+    linear-gradient(90deg, currentColor 1.5px, transparent 1.5px) 0 0 / 40px 11px repeat-x,
+    linear-gradient(90deg, currentColor 1.2px, transparent 1.2px) 0 100% / 20px 5px repeat-x;
+}
+.m-years-stop:first-child .m-years-seg::after { /* brass tip */
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 9px;
+  background: var(--yellow); border-right: 1.4px solid var(--ink); border-radius: 3px 0 0 3px;
+}
+.m-years-rivet {
+  position: absolute; z-index: 2; left: 3px; top: calc(var(--m-years-top) + var(--m-years-h) / 2 - 3.5px);
+  width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--ink);
+  background: radial-gradient(circle, var(--ink) 0 1.1px, var(--yellow) 1.6px); pointer-events: none;
+}
+
+/* the last stop is still open: dashed, unfilled, fading out */
+.m-years-stops .m-years-stop.m-years-next .m-years-seg {
+  background: color-mix(in srgb, var(--birch) 50%, #fff); border-style: dashed; border-color: var(--ink-2);
+  -webkit-mask-image: linear-gradient(90deg, #000 62%, transparent); mask-image: linear-gradient(90deg, #000 62%, transparent);
+}
+.m-years-next .m-years-seg::before { opacity: .4; }
+
+/* blue measure, pulled out from the tip of the ruler to the chosen pin */
+.m-years-measure {
+  position: absolute; z-index: 2; left: 0; width: 100%; top: calc(var(--m-years-top) + var(--m-years-h) + 10px); height: 3px;
+  background: var(--accent); border-radius: 2px; transform: scaleX(0); transform-origin: 0 50%; pointer-events: none;
+}
+.m-years-track::before {
+  content: ""; position: absolute; z-index: 2; left: 0; top: calc(var(--m-years-top) + var(--m-years-h) + 6px);
+  width: 2px; height: 11px; border-radius: 1px; background: var(--accent); opacity: 0; pointer-events: none;
+}
+.m-years-track.m-years-measuring::before { opacity: 1; }
+
+/* a stop: pin on the ruler, label hanging below it */
+.m-years-pinbtn {
+  position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: flex-start; align-items: stretch;
+  width: 100%; height: 100%; margin: 0;
+  padding: calc(var(--m-years-top) + var(--m-years-h) + 32px) 12px 10px 16px;
+  background: none; border: 0; border-radius: 10px; text-align: left; cursor: pointer;
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+}
+.m-years-pinbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 10px; }
+.m-years-pinbtn::before { /* leader from the ruler down to the label */
+  content: ""; position: absolute; left: 23.5px; top: calc(var(--m-years-top) + var(--m-years-h) + 5px);
+  width: 1px; height: 21px; background: var(--ink-2); opacity: .4;
+}
+.m-years-pin { position: absolute; left: 12px; top: calc(var(--m-years-top) - 16px); width: 24px; height: 36px; overflow: visible; }
+.m-years-pin-shadow { fill: var(--ink); opacity: .2; transform-box: fill-box; transform-origin: 50% 50%; }
+.m-years-pin-needle { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; }
+.m-years-pin-head { fill: var(--blue); stroke: var(--ink); stroke-width: 1.6; }
+.m-years-pin-shine { fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; opacity: .9; }
+.m-years-stop[data-tone="grey"] .m-years-pin-head { fill: var(--grey); }
+.m-years-stop[data-tone="rose"] .m-years-pin-head { fill: var(--rose); }
+.m-years-stop[data-tone="yellow"] .m-years-pin-head { fill: var(--yellow); }
+.m-years-stop[data-tone="green"] .m-years-pin-head { fill: var(--green); }
+.m-years-stop[data-tone="now"] .m-years-pin-head { fill: var(--accent); }
+.m-years-stop[data-tone="now"] .m-years-pin-shine { opacity: .6; }
+.m-years-stop[data-tone="open"] .m-years-pin-head { fill: #fff; stroke: var(--muted); stroke-dasharray: 2.6 2.8; }
+.m-years-stop[data-tone="open"] .m-years-pin-needle { stroke: var(--muted); stroke-dasharray: 2.6 2.8; }
+.m-years-stop[data-tone="open"] .m-years-pin-shadow { opacity: .1; }
+
+.m-years-title {
+  display: block; font-family: var(--serif); font-size: 1.4rem; line-height: 1.1; letter-spacing: -.005em; color: var(--ink);
+}
+.m-years-year { font-variant-numeric: lining-nums tabular-nums; }
+.m-years-line { display: block; margin-top: 6px; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.m-years-next .m-years-title { font-style: italic; color: var(--muted); }
+.m-years-next .m-years-line { color: var(--muted); }
+
+/* lifted: hover, keyboard focus, or pressed by tap or click */
+.m-years-pinbtn:focus-visible .m-years-pin-g,
+.m-years-stop.m-years-on .m-years-pin-g { transform: translateY(-7px); }
+.m-years-pinbtn:focus-visible .m-years-pin-shadow,
+.m-years-stop.m-years-on .m-years-pin-shadow { transform: scale(.55); opacity: .12; }
+.m-years-pinbtn:focus-visible .m-years-title,
+.m-years-stop.m-years-on .m-years-title,
+.m-years-stop.m-years-at .m-years-title { color: var(--accent-ink); }
+.m-years-stop.m-years-on .m-years-line, .m-years-stop.m-years-at .m-years-line { color: var(--ink); }
+.m-years-stop.m-years-tip .m-years-pinbtn::before { background: var(--accent); opacity: 1; box-shadow: 0 0 0 .5px var(--accent); }
+@media (hover: hover) {
+  .m-years-pinbtn:hover .m-years-pin-g { transform: translateY(-7px); }
+  .m-years-pinbtn:hover .m-years-pin-shadow { transform: scale(.55); opacity: .12; }
+  .m-years-pinbtn:hover .m-years-title { color: var(--accent-ink); }
+}
+
+.m-years-note { margin-top: 22px; }
+.m-years-note-narrow, .m-years-note-js { display: none; }
+html.js .m-years-note-js { display: inline; }
+
+/* ------------------------------------------------------------ small screens: the ruler runs off the page and snaps along */
+@media (max-width: 1079px) {
+  .m-years-rail {
+    margin: 30px calc(var(--gutter) * -1) 0; padding: 4px 0 4px var(--gutter);
+    overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity; scroll-padding-left: var(--gutter); scrollbar-width: none;
+  }
+  .m-years-rail::-webkit-scrollbar { display: none; }
+  .m-years-track { width: max-content; padding-right: var(--gutter); }
+  .m-years-stops { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: var(--m-years-col); }
+  .m-years-stop { scroll-snap-align: start; }
+  .m-years-stops .m-years-next { width: calc(var(--m-years-col) - 24px); }
+  .m-years-note { margin-top: 14px; }
+  .m-years-note-narrow { display: inline; }
+  html.js .m-years-rail:not(.m-years-end) {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent);
+  }
+}
+@media (max-width: 859px) {
+  .m-years-sub { font-size: 13.5px; }
+  .m-years-cap { font-size: 11.5px; }
+}
+
+/* ------------------------------------------------------------ motion */
+@media (prefers-reduced-motion: no-preference) {
+  .m-years-pin-g { transition: transform .4s var(--spring); }
+  .m-years-pin-shadow { transition: transform .4s var(--ease), opacity .3s var(--ease); }
+  .m-years-title, .m-years-line { transition: color .25s var(--ease); }
+  .m-years-pinbtn::before { transition: background-color .25s var(--ease), opacity .25s var(--ease); }
+  .m-years-measure { transition: transform .75s var(--ease); }
+  .m-years-track::before { transition: opacity .4s var(--ease); }
+
+  /* figures: the dimension line draws, the number counts (see module.js) */
+  html.js .m-years-fig::before { transition: transform 1s var(--ease); transition-delay: var(--d, 0ms); }
+  html.js .m-years-fig::after, html.js .m-years-fig .m-years-cap, html.js .m-years-fig .m-years-sub, html.js .m-years-fig .m-years-num {
+    transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: var(--d, 0ms);
+  }
+  html.js .m-years-d { transition: transform .5s var(--ease); }
+  html.js .m-years-fig .m-years-unit { transition: opacity .5s var(--ease), transform .5s var(--spring); }
+  html.js .m-years-fig:not(.m-years-in)::before { transform: scaleX(0); }
+  html.js .m-years-fig:not(.m-years-in)::after { opacity: 0; }
+  html.js .m-years-fig:not(.m-years-in) .m-years-num { opacity: 0; transform: translateY(10px); }
+  html.js .m-years-fig:not(.m-years-in) .m-years-cap,
+  html.js .m-years-fig:not(.m-years-in) .m-years-sub { opacity: 0; transform: translateY(8px); }
+  html.js .m-years-fig:not(.m-years-done) .m-years-unit { opacity: 0; transform: translateX(-6px); }
+
+  /* ruler: each segment swings out from its rivet and clicks straight, left to right */
+  html.js .m-years-seg { transition: transform .85s var(--spring), opacity .3s var(--ease); transition-delay: var(--d, 0ms); }
+  html.js .m-years-rivet { transition: transform .45s var(--spring), opacity .2s; transition-delay: var(--d, 0ms); }
+  html.js .m-years-stop .m-years-pin { transition: transform .55s var(--spring), opacity .25s var(--ease); transition-delay: calc(var(--d, 0ms) + 420ms); }
+  html.js .m-years-stop .m-years-title, html.js .m-years-stop .m-years-line, html.js .m-years-stop .m-years-pinbtn::before {
+    transition: opacity .6s var(--ease), transform .6s var(--ease), color .25s var(--ease), background-color .25s var(--ease);
+    transition-delay: calc(var(--d, 0ms) + 380ms), calc(var(--d, 0ms) + 380ms), 0s, 0s;
+  }
+  html.js .m-years-stop .m-years-line { transition-delay: calc(var(--d, 0ms) + 460ms), calc(var(--d, 0ms) + 460ms), 0s, 0s; }
+  html.js .m-years-stop:not(.m-years-in) .m-years-seg { opacity: 0; transform: rotate(46deg); }
+  html.js .m-years-stop:nth-child(even):not(.m-years-in) .m-years-seg { transform: rotate(-46deg); }
+  html.js .m-years-stop:first-child:not(.m-years-in) .m-years-seg { transform: translateX(-28px); }
+  html.js .m-years-stop:not(.m-years-in) .m-years-rivet { opacity: 0; transform: scale(.2); }
+  html.js .m-years-stop:not(.m-years-in) .m-years-pin { opacity: 0; transform: translateY(-16px); }
+  html.js .m-years-stop:not(.m-years-in) .m-years-title,
+  html.js .m-years-stop:not(.m-years-in) .m-years-line { opacity: 0; transform: translateY(8px); }
+  html.js .m-years-stop:not(.m-years-in) .m-years-pinbtn::before { opacity: 0; }
+  html.js .m-years-note { transition: opacity .8s var(--ease) .3s; }
+  html.js .m-years:not(.m-years-ready) .m-years-note { opacity: 0; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 1079px) {
+  html.js .m-years-stop:not(.m-years-in) .m-years-seg { transform: rotate(24deg); }
+  html.js .m-years-stop:nth-child(even):not(.m-years-in) .m-years-seg { transform: rotate(-12deg); }
+}
