@@ -12,7 +12,7 @@
 
 /* ------------------------------------------------------------------ tile */
 .m-offclock .oc-tile {
-  --oc-tint: #f4f6f9; --oc-h: 148px;
+  --oc-tint: #f4f6f9; --oc-h: 156px;
   position: relative; display: flex; flex-direction: column; flex: 1; min-width: 0;
   background: #fff; border: 1px solid var(--rule); border-radius: 14px; box-shadow: var(--shadow-soft);
 }

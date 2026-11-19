@@ -200,23 +200,26 @@
           var dist = Math.sqrt(dx * dx + dy * dy);
           var dur = 620 + Math.min(280, dist * 0.3);
           var delay = order.indexOf(li) * 34;
-          running.push(li.animate([
-            { transform: "translate(" + dx + "px," + dy + "px)", zIndex: 6 },
-            { transform: "translate(" + (dx * 0.5) + "px," + (dy * 0.5 - 18) + "px) scale(1.04)", zIndex: 6, offset: 0.5 },
-            { transform: "translate(0,0)", zIndex: 6 }
-          ], { duration: dur, delay: delay, easing: "cubic-bezier(.45,.05,.2,1)", fill: "backwards" }));
-          /* a small swing as it lands on the new peg */
-          var hang = li.querySelector(".m-quotes-hang");
-          if (hang && !li.classList.contains("m-quotes-slot--tape")) {
-            var dir = dx < 0 ? 1 : -1;
-            running.push(hang.animate([
-              { transform: "rotate(0deg)" },
-              { transform: "rotate(" + (dir * 3.2) + "deg)", offset: 0.25 },
-              { transform: "rotate(" + (dir * -2) + "deg)", offset: 0.5 },
-              { transform: "rotate(" + (dir * 0.9) + "deg)", offset: 0.75 },
-              { transform: "rotate(0deg)" }
-            ], { duration: 760, delay: delay + dur - 140, easing: "ease-in-out", composite: "add" }));
-          }
+          var lift = n ? 18 : 0; /* no arc on the phone rail, where the board clips its contents */
+          try {
+            running.push(li.animate([
+              { transform: "translate(" + dx + "px," + dy + "px)", zIndex: 6 },
+              { transform: "translate(" + (dx * 0.5) + "px," + (dy * 0.5 - lift) + "px) scale(" + (n ? 1.04 : 1) + ")", zIndex: 6, offset: 0.5 },
+              { transform: "translate(0px,0px)", zIndex: 6 }
+            ], { duration: dur, delay: delay, easing: "cubic-bezier(.45,.05,.2,1)", fill: "backwards" }));
+            /* a small swing as it lands on the new peg */
+            var hang = li.querySelector(".m-quotes-hang");
+            if (hang && !li.classList.contains("m-quotes-slot--tape")) {
+              var dir = dx < 0 ? 1 : -1;
+              running.push(hang.animate([
+                { transform: "rotate(0deg)" },
+                { transform: "rotate(" + (dir * 3.2) + "deg)", offset: 0.25 },
+                { transform: "rotate(" + (dir * -2) + "deg)", offset: 0.5 },
+                { transform: "rotate(" + (dir * 0.9) + "deg)", offset: 0.75 },
+                { transform: "rotate(0deg)" }
+              ], { duration: 760, delay: delay + dur - 140, easing: "ease-in-out", composite: "add" }));
+            }
+          } catch (e) { /* no Web Animations: the cards simply change places */ }
         });
       }
       if (status) {

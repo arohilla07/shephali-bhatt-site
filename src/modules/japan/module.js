@@ -229,16 +229,14 @@
     var first = strings[0], lastS = strings[COUNT - 1];
     var xAt = function (s, y) { var t = (y - s.h[1]) / (s.f[1] - s.h[1]); return s.h[0] + (s.f[0] - s.h[0]) * t; };
 
-    // where the pointer is, measured in strings: 0 is string 1, 12 is string 13
+    // where the pointer is, measured in strings: 0 is string 1, 12 is string 13 (null above or below them)
     function locate(ev) {
       var r = svg.getBoundingClientRect();
       if (!r.width || !r.height) return null;
       var x = (ev.clientX - r.left) / r.width * VW, y = (ev.clientY - r.top) / r.height * VH;
       if (y < yTop || y > yBottom) return null;
       var a = xAt(first, y), b = xAt(lastS, y);
-      var pos = (x - a) / (b - a) * (COUNT - 1);
-      if (pos < -0.7 || pos > COUNT - 1 + 0.7) return null;
-      return pos;
+      return (x - a) / (b - a) * (COUNT - 1); // may fall outside 0..12: beside the strings
     }
 
     var current = 0, track = null, held = false, lastPointer = -1e9;
@@ -253,12 +251,14 @@
       if (ev.pointerType === "mouse" && ev.button !== 0) return;
       lastPointer = nowMs();
       var pos = locate(ev);
-      if (pos === null) { track = null; return; }
+      held = true; // a slide may begin beside the strings and then cross them
       ev.preventDefault();
-      held = true;
-      var i = clamp(Math.round(pos), 0, COUNT - 1);
-      setCurrent(i, true);
-      pluck(i, 1, 0, true);
+      if (pos === null) { track = null; return; }
+      if (pos > -0.7 && pos < COUNT - 0.3) {
+        var i = clamp(Math.round(pos), 0, COUNT - 1);
+        setCurrent(i, true);
+        pluck(i, 1, 0, true);
+      }
       track = { pos: pos, x: ev.clientX, y: ev.clientY, t: ev.timeStamp };
       if (ev.pointerType === "mouse" && pad.setPointerCapture) { try { pad.setPointerCapture(ev.pointerId); } catch (e) { /* fine */ } }
     });

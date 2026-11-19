@@ -94,14 +94,7 @@
       try {
         var text = (h.textContent || "").replace(/\s+/g, " ").trim();
         if (reduce || h.children.length || !text || now() > 2000) return;
-        // Where each letter sits in the plain heading, so the split copy can keep the font's kerning.
-        var tn = h.firstChild, plain = null, k;
-        if (h.childNodes.length === 1 && tn.nodeType === 3 && tn.data === text && doc.createRange && Array.from(text).length === text.length) {
-          var rg = doc.createRange();
-          plain = [];
-          for (k = 0; k < text.length; k++) { rg.setStart(tn, k); rg.setEnd(tn, k + 1); plain.push(rg.getBoundingClientRect().left); }
-        }
-        var wrap = make("span"), chars = [], at = 0;
+        var wrap = make("span"), chars = [], at = 0, live = true;
         wrap.setAttribute("aria-hidden", "true");
         text.split(" ").forEach(function (word, wi) {
           if (wi) { wrap.appendChild(doc.createTextNode(" ")); at++; }
@@ -115,19 +108,41 @@
           });
           wrap.appendChild(w);
         });
+        // Separate letters lose the font's kerning. Measure the plain heading and the split one in a hidden
+        // copy, then nudge each letter so both set identically and nothing jumps when the text is put back.
+        var kern = function () {
+          if (!live || !doc.createRange || Array.from(text).length !== text.length) return;
+          var probe = h.cloneNode(false), rg = doc.createRange(), plain = [], lefts, k;
+          probe.removeAttribute("id"); probe.removeAttribute("aria-label");
+          probe.classList.remove("m-motion-split");
+          probe.setAttribute("aria-hidden", "true");
+          probe.style.cssText = "position:absolute;left:0;top:0;margin:0;visibility:hidden;pointer-events:none;white-space:nowrap;animation:none";
+          probe.textContent = text;
+          h.parentNode.appendChild(probe);
+          try {
+            for (k = 0; k < text.length; k++) { rg.setStart(probe.firstChild, k); rg.setEnd(probe.firstChild, k + 1); plain.push(rg.getBoundingClientRect().left); }
+            var copy = wrap.cloneNode(true), cc = copy.querySelectorAll(".m-motion-ch");
+            for (k = 0; k < cc.length; k++) cc[k].style.marginLeft = "";
+            probe.textContent = "";
+            probe.appendChild(copy);
+            var fs = parseFloat(win.getComputedStyle(probe).fontSize) || 16;
+            lefts = Array.prototype.map.call(cc, function (c) { return c.getBoundingClientRect().left; });
+            for (k = 1; k < chars.length; k++) {
+              if (chars[k].word !== chars[k - 1].word) continue;
+              var d = (plain[chars[k].at] - plain[chars[k - 1].at]) - (lefts[k] - lefts[k - 1]);
+              chars[k].el.style.marginLeft = Math.abs(d) > .05 && Math.abs(d) < fs * .2 ? (d / fs).toFixed(4) + "em" : "";
+            }
+          } finally {
+            probe.remove();
+          }
+        };
         h.setAttribute("aria-label", text);
         h.textContent = "";
         h.appendChild(wrap);
-        if (plain) { // measured before .m-motion-split starts the letters moving
-          var fs = parseFloat(win.getComputedStyle(h).fontSize) || 16;
-          var lefts = chars.map(function (c) { return c.el.getBoundingClientRect().left; });
-          for (k = 1; k < chars.length; k++) {
-            if (chars[k].word !== chars[k - 1].word) continue;
-            var d = (plain[chars[k].at] - plain[chars[k - 1].at]) - (lefts[k] - lefts[k - 1]);
-            if (Math.abs(d) > .05 && Math.abs(d) < fs * .2) chars[k].el.style.marginLeft = (d / fs).toFixed(4) + "em";
-          }
-        }
+        safe(kern);
+        if (doc.fonts && doc.fonts.ready && doc.fonts.ready.then) doc.fonts.ready.then(function () { safe(kern); }, function () {});
         setTimeout(function () {
+          live = false;
           h.textContent = text;
           h.removeAttribute("aria-label");
         }, 100 + chars.length * 38 + 850 + 250);
