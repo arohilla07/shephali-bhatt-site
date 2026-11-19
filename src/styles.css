@@ -647,7 +647,7 @@ a { color: inherit; text-decoration: none; }
   opacity: 1; transform: translateX(calc(-50% + var(--shift))) translateY(-34px) rotate(0) scale(1);
 }
 .spine-item:hover .spine-title, .spine-item:focus-within .spine-title, .spine-item.is-turning .spine-title { opacity: .15; transition: opacity .2s; }
-@media (hover: none) { .spine-item:hover .book-flat { opacity: 0; transform: translateX(calc(-50% + var(--shift))) translateY(20px) rotate(-90deg) scale(.4); } .spine-item.is-turning .book-flat { opacity: 1; transform: translateX(calc(-50% + var(--shift))) translateY(-34px) rotate(0) scale(1); } }
+@media (hover: none) { .spine-item:hover .book-flat { opacity: 0; transform: translateX(calc(-50% + var(--shift))) translateY(20px) rotate(-90deg) scale(.4); } .spine-item.is-turning .book-flat { pointer-events: auto; cursor: pointer; opacity: 1; transform: translateX(calc(-50% + var(--shift))) translateY(-34px) rotate(0) scale(1); } }
 @media (prefers-reduced-motion: reduce) { .book-flat { transition: opacity .15s; } }
 
 /* ---- Framed photo: a little zoom and glow on hover or tap ---- */

@@ -384,11 +384,11 @@ def spine(s, sid, i):
     tone = tone_for(s, h // 7)
     variant = (h >> 8) % 4
     feat = " is-featured" if s.get("featured") else ""
-    label = f'{s.get("headline")} ({s.get("outlet")}, {fmt_date(s.get("date"))}). Open details'
+    label = f'{s.get("headline")} ({s.get("outlet")}, {fmt_date(s.get("date"))}). Opens the story in a new tab'
     return (
         f'<li class="spine-item" style="--h:{height}px;--w:{width}px;--d:{i}">'
         f'<button type="button" class="spine t-{tone} v-{variant}{feat}" data-story="{sid}" '
-        f'aria-haspopup="dialog" aria-label="{e(label)}">'
+        f'aria-label="{e(label)}">'
         f'<span class="spine-cap" aria-hidden="true"></span>'
         f'<span class="spine-title" aria-hidden="true">{e(title)}</span>'
         f'<span class="spine-mark" aria-hidden="true">{e(outlet_mark(s.get("outlet")))}</span>'
@@ -396,7 +396,7 @@ def spine(s, sid, i):
         f'<span class="book-flat t-{tone}" aria-hidden="true">'
         f'<span class="book-flat-meta">{e(s.get("outlet"))} · {e(fmt_date(s.get("date")))}</span>'
         f'<span class="book-flat-title">{e(s.get("headline"))}</span>'
-        f'<span class="book-flat-cta">Open the book →</span>'
+        f'<span class="book-flat-cta">Read the story ↗</span>'
         f"</span></li>"
     )
 

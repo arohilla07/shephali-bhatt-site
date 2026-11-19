@@ -47,55 +47,32 @@
       });
     }
 
-    // Book panel
-    var dlg = doc.getElementById("book-dialog"), opener = null;
-    if (dlg && typeof dlg.showModal === "function") {
-      var slot = function (n) { return dlg.querySelector('[data-slot="' + n + '"]'); };
-      var open = function (btn) {
-        var card = doc.getElementById(btn.dataset.story);
-        if (!card) return;
-        var a = card.querySelector(".headline a"), sum = card.querySelector(".summary");
-        var fig = card.querySelector(".cover").cloneNode(true);
-        fig.classList.remove("cover-thumb");
-        fig.classList.add("cover-dialog");
-        var im = fig.querySelector("img");
-        if (im) { im.loading = "eager"; watchImg(im); }
-        slot("cover").replaceChildren(fig);
-        slot("meta").replaceChildren(card.querySelector(".meta").cloneNode(true));
-        slot("title").textContent = a.textContent.replace(" (opens in a new tab)", "").replace("↗", "").trim();
-        slot("summary").textContent = sum ? sum.textContent : "";
-        slot("summary").hidden = !sum;
-        slot("link").href = a.href;
-        slot("read").textContent = card.dataset.read || "Read the story";
-        opener = btn;
-        btn.classList.add("is-out");
-        dlg.showModal();
-        root.classList.add("dialog-open");
-        slot("link").focus();
-      };
-      doc.addEventListener("click", function (ev) {
-        var b = ev.target.closest(".spine");
-        if (!b) return;
-        var li = b.closest(".spine-item");
+    // Books: hover (or first tap on touch) tips the book flat to show its title;
+    // clicking the book, or tapping the flat card, opens the story in a new tab.
+    var touchy = window.matchMedia && matchMedia("(hover: none)").matches;
+    var storyUrl = function (b) {
+      var card = b && doc.getElementById(b.dataset.story), a = card && card.querySelector(".headline a");
+      return a ? a.href : null;
+    };
+    var go = function (b) { var u = storyUrl(b); if (u) window.open(u, "_blank", "noopener"); };
+    var closeAll = function (except) {
+      doc.querySelectorAll(".spine-item.is-turning").forEach(function (x) { if (x !== except) x.classList.remove("is-turning"); });
+    };
+    doc.addEventListener("click", function (ev) {
+      var li = ev.target.closest && ev.target.closest(".spine-item");
+      if (!li) { closeAll(); return; }
+      var b = li.querySelector(".spine");
+      if (touchy && !li.classList.contains("is-turning")) {
+        ev.preventDefault();
+        closeAll(li);
         fit(li);
         li.classList.add("is-turning");
-        setTimeout(function () { open(b); }, reduce ? 0 : 520);
-      });
-      dlg.addEventListener("click", function (ev) {
-        if (ev.target === dlg || ev.target.closest("[data-close]")) dlg.close();
-      });
-      dlg.addEventListener("close", function () {
-        root.classList.remove("dialog-open");
-        doc.querySelectorAll(".spine-item.is-turning").forEach(function (x) { x.classList.remove("is-turning"); });
-        if (opener) { opener.classList.remove("is-out"); opener.focus({ preventScroll: true }); opener = null; }
-      });
-    } else {
-      // No <dialog> support: spines go straight to the story.
-      doc.addEventListener("click", function (ev) {
-        var b = ev.target.closest(".spine"), card = b && doc.getElementById(b.dataset.story);
-        if (card) window.open(card.querySelector(".headline a").href, "_blank", "noopener");
-      });
-    }
+        return;
+      }
+      go(b);
+      closeAll();
+    });
+    doc.addEventListener("keydown", function (ev) { if (ev.key === "Escape") closeAll(); });
 
     // Tapping the framed photo gives it the same little zoom as hovering
     var fbtn = doc.querySelector(".frame-mat");
