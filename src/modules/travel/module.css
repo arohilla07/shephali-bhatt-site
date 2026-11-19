@@ -134,7 +134,7 @@ html.no-js .m-travel-tear { visibility: hidden; }
 .m-travel-notes { display: grid; gap: 8px; }
 .m-travel-note { line-height: 1.3; text-wrap: balance; }
 .m-travel-note-k {
-  display: inline-block; margin-right: 8px; padding: 2px 9px 1px; border: 1px solid currentColor; border-radius: 999px;
+  display: inline-block; min-width: 6.2em; margin-right: 8px; text-align: center; padding: 2px 9px 1px; border: 1px solid currentColor; border-radius: 999px;
   color: var(--accent-ink); vertical-align: .22em;
   font-family: var(--mono); font-size: 10.5px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase;
 }
@@ -184,7 +184,12 @@ html.no-js .m-travel-tear { visibility: hidden; }
 @media (hover: hover) and (max-width: 639px) {
   .m-travel-stub:hover { transform: translate(1px, 2px) rotate(.5deg); }
 }
+@media (max-width: 359px) {
+  .m-travel-row .m-travel-k { font-size: 10px; letter-spacing: .05em; }
+  .m-travel-side { grid-template-columns: minmax(0, 1fr) 108px; gap: 12px; }
+}
 @media (min-width: 640px) and (max-width: 999px) {
+  .m-travel-stub { --tear: translate(1px, 4px) rotate(2.6deg); } /* stay inside the page gutter */
   .m-travel-side { grid-template-columns: minmax(0, 1fr) 230px; gap: 28px; }
   .m-travel-trip { max-width: 780px; }
 }

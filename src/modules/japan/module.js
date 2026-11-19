@@ -271,7 +271,7 @@
       var pos = locate(ev);
       if (pos === null) { track = null; return; }
       // only a real, continuous movement counts; a page scrolling under a still cursor does not
-      if (track && ev.timeStamp - track.t < 180 && (ev.clientX !== track.x || ev.clientY !== track.y) && pos !== track.pos) {
+      if (track && (held || ev.timeStamp - track.t < 180) && (ev.clientX !== track.x || ev.clientY !== track.y) && pos !== track.pos) {
         var from = track.pos, dir = pos > from ? 1 : -1;
         var speed = Math.abs(pos - from) / Math.max(1, ev.timeStamp - track.t);
         var vel = clamp(0.4 + speed * 45, 0.4, 1);

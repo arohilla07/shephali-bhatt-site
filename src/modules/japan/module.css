@@ -2,15 +2,16 @@
 
 .m-japan .inter-head .label { display: inline-flex; align-items: center; gap: 10px; }
 .m-japan-grid { display: grid; gap: 14px; }
-@media (min-width: 860px) { .m-japan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
+@media (min-width: 760px) { .m-japan-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 960px) { .m-japan-grid { gap: 24px; } }
 
 .m-japan-panel {
   display: flex; flex-direction: column; margin: 0; padding: 12px 12px 16px;
   border: 1px solid var(--rule); border-radius: 14px; background: var(--bg);
 }
-@media (min-width: 720px) { .m-japan-panel { padding: 18px 22px 20px; } }
+@media (min-width: 960px) { .m-japan-panel { padding: 18px 22px 20px; } }
 
-.m-japan-stage { position: relative; width: 100%; max-width: 470px; margin: 0 auto; aspect-ratio: 420 / 326; }
+.m-japan-stage { position: relative; width: 100%; max-width: 470px; margin: 0 auto; aspect-ratio: 420 / 326; container: m-japan-stage / inline-size; }
 .m-japan-art { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .m-japan-shadow { fill: var(--ink); opacity: .06; }
 .m-japan-ink { stroke: var(--ink); stroke-width: 1.7; }
@@ -48,7 +49,8 @@
 .m-japan-callout path { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 3 4; stroke-linecap: round; opacity: .5; }
 .m-japan-callout text { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; fill: var(--ink-2); }
 .m-japan-callout .m-japan-callout-sub { fill: var(--muted); font-size: 10px; }
-@media (max-width: 519px) { .m-japan-nums { display: none; } }
+/* the numerals and the toggle follow the size of the drawing, not the window */
+@container m-japan-stage (max-width: 379px) { .m-japan-nums { display: none; } }
 
 /* strings are real buttons laid along each string; they only exist when the script runs */
 .m-japan-keys { display: none; }
@@ -57,7 +59,7 @@ html.js .m-japan .m-japan-keys {
   -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
 }
 .m-japan-key {
-  position: absolute; left: var(--x); top: var(--y); width: 4.4%; height: var(--l);
+  position: absolute; left: var(--x); top: var(--y); width: 3.3%; height: var(--l);
   transform: translate(-50%, -50%) rotate(var(--r));
   padding: 0; border: 0; border-radius: 999px; background: none; cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -75,6 +77,12 @@ html.js .m-japan .m-japan-sound {
 }
 html.js .m-japan .m-japan-sound:hover { border-color: var(--ink); }
 .m-japan-sound svg { flex: none; }
+@container m-japan-stage (max-width: 329px) {
+  html.js .m-japan .m-japan-sound { gap: 4px; min-height: 34px; padding: 0 9px 0 8px; font-size: 12px; }
+}
+@container m-japan-stage (max-width: 289px) {
+  .m-japan-sound-word { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
 .m-japan-sound-state { min-width: 1.6em; color: var(--accent-ink); }
 .m-japan-sound-cross { opacity: 0; }
 .m-japan-sound[aria-pressed="false"] { color: var(--muted); }

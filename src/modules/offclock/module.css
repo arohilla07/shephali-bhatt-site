@@ -54,8 +54,11 @@
 html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
 .m-offclock .oc-play-chip {
   position: absolute; top: 16px; right: 16px; width: 26px; height: 26px; border-radius: 50%;
-  display: grid; place-items: center; background: #fff; border: 1px solid var(--rule-strong); color: var(--ink);
+  display: none; place-items: center; background: #fff; border: 1px solid var(--rule-strong); color: var(--ink);
 }
+html.js .m-offclock .oc-play-chip { display: grid; }
+.m-offclock .oc-hint { display: none; }
+html.js .m-offclock .oc-hint { display: inline; }
 .m-offclock .oc-play-chip svg { display: block; width: 10px; height: 10px; margin-left: 1px; fill: currentColor; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; }
 .m-offclock .oc-tile.is-held .oc-play-chip { border-color: var(--ink); }
 .m-offclock .oc-tile.is-on .oc-play-chip { background: var(--ink); border-color: var(--ink); color: #fff; }
@@ -147,7 +150,7 @@ html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
   .m-offclock .is-on .oc-rope-f { transition: stroke-dashoffset .55s cubic-bezier(.45, 0, .9, .75); }
   .m-offclock .is-on .oc-rope-b { transition: stroke-dashoffset .5s cubic-bezier(.1, .3, .45, 1) .54s; }
   .m-offclock .is-on .oc-gate { transition: transform .34s cubic-bezier(.3, 1.9, .6, 1) 1.08s; }
-  .m-offclock .is-on.is-play .oc-click { animation: m-offclock-flash .6s ease-out 1.16s both; }
+  .m-offclock .is-on .oc-click { animation: m-offclock-flash .6s ease-out 1.16s both; }
 
   /* 3. Takk: cover turns, pencil comes over, one line and a smile */
   .m-offclock .oc-book { transition: transform .5s var(--ease) .1s; }
@@ -174,7 +177,7 @@ html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
   .m-offclock .oc-pack { transition: transform .8s cubic-bezier(.4, 0, .3, 1); }
   .m-offclock .is-on .oc-reel { transition: transform 2.4s cubic-bezier(.3, .2, .25, 1); }
   .m-offclock .is-on .oc-pack { transition: transform 2.4s cubic-bezier(.3, .2, .25, 1); }
-  .m-offclock .is-on.is-play .oc-note { animation: m-offclock-note 1.5s cubic-bezier(.3, .6, .4, 1) calc(var(--n) * .32s + .2s) both; }
+  .m-offclock .is-on .oc-note { animation: m-offclock-note 1.5s cubic-bezier(.3, .6, .4, 1) calc(var(--n) * .32s + .2s) both; }
 
   /* 6. Stilla: the dot goes, then the phone turns over */
   .m-offclock .oc-zz { transition: opacity .15s linear; }
@@ -185,7 +188,7 @@ html.js .m-offclock .oc-play:focus-visible::after { outline: none; }
   .m-offclock .is-on .oc-front { transition: transform .22s cubic-bezier(.5, 0, 1, .7) .34s; }
   .m-offclock .is-on .oc-back { transition: transform .36s cubic-bezier(.2, 1.4, .5, 1) .56s; }
   .m-offclock .is-on .oc-zz { transition: opacity .5s var(--ease) 1s; }
-  .m-offclock .is-on.is-play .oc-phone { animation: m-offclock-hop .6s cubic-bezier(.3, 0, .4, 1) .3s both; }
+  .m-offclock .is-on .oc-phone { animation: m-offclock-hop .6s cubic-bezier(.3, 0, .4, 1) .3s both; }
 
   /* replaying: snap back to rest without easing, then let go */
   .m-offclock .oc-tile.is-reset .oc-svg * { transition: none !important; animation: none !important; }

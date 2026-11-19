@@ -50,7 +50,7 @@
     mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
   }
   .m-motion-run .m-motion-ticker-track {
-    display: flex; width: max-content;
+    display: flex; width: max-content; will-change: transform;
     animation: m-motion-marquee var(--m-motion-dur, 60s) linear infinite;
   }
   .m-motion-run .m-motion-ticker-list,
@@ -72,6 +72,7 @@
   }
 }
 @keyframes m-motion-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .m-motion-ticker-toggle { display: none; } }
 
 /* ================================================================== 2. scroll progress: a tape measure under the header */
 .m-motion-tape {

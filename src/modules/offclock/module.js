@@ -11,7 +11,7 @@
 
     var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
     var hasIO = "IntersectionObserver" in window;
-    var PLAY_MS = 3200;   // longest one-shot, with room to spare
+    var PLAY_MS = 2800;   // the hanger's swing, which is always allowed to finish
     var DEMO_MS = 2700;   // how long a tile stays "on" when it demos itself on scroll
     var lastPointer = "mouse";
 
@@ -20,8 +20,8 @@
     });
 
     function play(t) {
+      if (t.el.classList.contains("is-play")) return;   // still swinging: let it finish
       t.el.classList.add("is-play");
-      clearTimeout(t.playT);
       t.playT = setTimeout(function () { t.el.classList.remove("is-play"); }, PLAY_MS);
     }
 
