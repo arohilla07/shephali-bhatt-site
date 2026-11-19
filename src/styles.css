@@ -739,3 +739,19 @@ html.warm #hero-lamp-glow, html.warm .lamp-glow { filter: saturate(1.4) brightne
 .mode-btn.in-footer:hover { color: var(--ink); border-color: transparent; }
 .mode-btn.in-footer .mode-icon .bite { fill: var(--bg); }
 html.warm .mode-btn.in-footer { background: transparent; border-color: transparent; color: #c98a10; }
+
+/* Interludes: optional modules between the numbered steps (src/modules/<name>/) */
+.interlude { position: relative; padding: 56px 0; }
+.inter-head { max-width: 46rem; margin-bottom: 28px; }
+.inter-title { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 4.2vw, 2.7rem); line-height: 1.05; letter-spacing: -.015em; margin-top: 12px; }
+.inter-title em { font-style: italic; color: var(--accent-ink); }
+.inter-lede { margin-top: 12px; max-width: 40rem; color: var(--ink-2); }
+.inter-note { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 719px) { .interlude { padding: 40px 0; } }
+
+/* Step 4, "Off the page": a step heading followed by interludes */
+.section-offpage { padding-bottom: 40px; }
+.section-offpage .step-head { margin-bottom: 20px; }
+.offpage-lede { max-width: 40rem; font-size: 1.12rem; color: var(--ink-2); }
+.section-offpage > .interlude:first-of-type { padding-top: 40px; }
+@media (max-width: 1019px) { .nav .nav-extra { display: none; } }

@@ -43,6 +43,20 @@
       "note": "Creator culture, parasocial relationships, AI, women in Indian media and journalism’s future."
     },
     {
+      "show": "Puliyabaazi (Hindi)",
+      "title": "Digital Anthropology and Internet Culture",
+      "url": "https://www.puliyabaazi.in/p/digital-anthropology-and-internet",
+      "year": "2025",
+      "note": "In Hindi, on how internet language has evolved across generations, and the bright side of the internet as well as the bleak."
+    },
+    {
+      "show": "To Your Heart’s Content",
+      "title": "Lessons from reporting on Indian internet culture",
+      "url": "https://podcasts.apple.com/in/podcast/to-your-hearts-content/id1770691407",
+      "year": "2025",
+      "note": "On how a story finds its audience, and what tallying 160 hours of streaming says about language on OTT."
+    },
+    {
       "show": "Advertising is Dead with Varun Duggirala",
       "title": "Shephali Bhatt on the Evolution of the Creator Economy",
       "url": "https://chartable.com/podcasts/advertising-is-dead/episodes/121072759-shephali-bhatt-on-the-evolution-of-the-creator-economy",
@@ -65,13 +79,34 @@
     }
   ],
   "links": [
-    { "label": "Living Things (Substack)", "url": "https://shephalib.substack.com" },
-    { "label": "X", "url": "https://x.com/ShephaliBhatt" },
-    { "label": "Instagram", "url": "https://www.instagram.com/shephalibhatt/" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/shephali-bhatt-19727915/" },
-    { "label": "Mint", "url": "https://www.livemint.com/authors/shephali-bhatt" },
-    { "label": "The Economic Times", "url": "https://economictimes.indiatimes.com/etreporter/author-shephali-bhatt-479230465.cms" },
-    { "label": "Linktree", "url": "https://linktr.ee/ShephaliBhatt" }
+    {
+      "label": "Living Things (Substack)",
+      "url": "https://shephalib.substack.com"
+    },
+    {
+      "label": "X",
+      "url": "https://x.com/ShephaliBhatt"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/shephalibhatt/"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/shephali-bhatt-19727915/"
+    },
+    {
+      "label": "Mint",
+      "url": "https://www.livemint.com/authors/shephali-bhatt"
+    },
+    {
+      "label": "The Economic Times",
+      "url": "https://economictimes.indiatimes.com/etreporter/author-shephali-bhatt-479230465.cms"
+    },
+    {
+      "label": "Linktree",
+      "url": "https://linktr.ee/ShephaliBhatt"
+    }
   ],
   "meta_description": "Shephali Bhatt is a Mumbai-based journalist who reports on internet culture, the creator economy and how the internet changes the way we live."
 }

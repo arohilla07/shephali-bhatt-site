@@ -42,10 +42,7 @@
     <a class="wordmark" href="#top" aria-label="$name, back to top">$name</a>
     <nav aria-label="Primary">
       <ul class="nav">
-        <li><a href="#about"><span class="nav-num">01</span>About</a></li>
-        <li><a href="#stories"><span class="nav-num">02</span>Stories</a></li>
-        <li><a href="#on-air"><span class="nav-num">03</span>On air</a></li>
-        <li><a href="#contact"><span class="nav-num">04</span>Contact</a></li>
+$nav
       </ul>
     </nav>
     <button type="button" class="mode-btn in-header" aria-pressed="false" data-mode-toggle><svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><g class="rays" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g><circle class="core" cx="12" cy="12" r="5.2" fill="currentColor"/><circle class="bite" cx="15.6" cy="9" r="4.6"/></svg><span class="mode-label">Dark mode</span></button>
@@ -68,6 +65,7 @@
       $hero_scene
     </div>
   </section>
+$slot_after_hero
 
   <section class="section" id="about" aria-labelledby="about-title">
     <div class="wrap">
@@ -84,8 +82,10 @@ $themes
           </ol>
         </aside>
       </div>
+$slot_about_end
     </div>
   </section>
+$slot_after_about
 
   <section class="section" id="stories" aria-labelledby="stories-title">
     <div class="wrap">
@@ -97,6 +97,7 @@ $groups
       </div>
     </div>
   </section>
+$slot_after_stories
 
   <section class="section" id="on-air" aria-labelledby="onair-title">
     <div class="wrap">
@@ -110,6 +111,7 @@ $podcasts
     </div>
   </section>
 
+$slot_offpage
   <section class="section section-contact" id="contact" aria-labelledby="contact-title">
     <div class="wrap">
       $head4
@@ -129,26 +131,13 @@ $links
   </section>
 </main>
 
-<dialog class="book-dialog" id="book-dialog" aria-labelledby="bd-title">
-  <div class="book-open">
-    <div class="page page-left" data-slot="cover"></div>
-    <div class="page page-right">
-      <div data-slot="meta"></div>
-      <h3 class="bd-title" id="bd-title" data-slot="title"></h3>
-      <p class="bd-summary" data-slot="summary"></p>
-      <p class="bd-actions"><a class="btn btn-primary" data-slot="link" href="#" target="_blank" rel="noopener"><span data-slot="read">Read the story</span> <span aria-hidden="true">&#8599;</span><span class="sr-only"> (opens in a new tab)</span></a></p>
-      <p class="bd-hint" aria-hidden="true">Esc to put it back</p>
-    </div>
-    <button type="button" class="bd-close" data-close aria-label="Close and return to the shelf"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
-  </div>
-</dialog>
-
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <p>&copy; $year $name</p>
     <p class="footer-end"><button type="button" class="mode-btn in-footer" aria-pressed="false" data-mode-toggle><svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><g class="rays" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g><circle class="core" cx="12" cy="12" r="5.2" fill="currentColor"/><circle class="bite" cx="15.6" cy="9" r="4.6"/></svg><span class="mode-label">Dark mode</span></button> <a href="#top">Back to top &uarr;</a></p>
   </div>
 </footer>
+$slot_body_end
 <div class="warm-light" aria-hidden="true"></div>
 <div class="warm-toast" role="status" aria-live="polite"></div>
 </body>

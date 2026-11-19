@@ -8,6 +8,7 @@ src/template.html, and copies styles + assets. Python stdlib only.
 import datetime
 import hashlib
 import json
+import os
 import re
 import shutil
 import sys
@@ -20,6 +21,41 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
 SRC, CONTENT, ASSETS, DIST = ROOT / "src", ROOT / "content", ROOT / "assets", ROOT / "dist"
+if os.environ.get("SITE_OUT"):  # build somewhere else, e.g. while testing one module
+    DIST = Path(os.environ["SITE_OUT"]).resolve()
+
+# Optional page modules live in src/modules/<name>/ as module.html, module.css and module.js.
+# Each slot below is a $placeholder in src/template.html; modules render in the order listed.
+MODULES = SRC / "modules"
+SLOTS = {
+    "slot_after_hero": ["motion"],
+    "slot_about_end": ["venn"],
+    "slot_after_about": ["years"],
+    "slot_after_stories": ["quotes"],
+    "slot_offpage": ["offclock", "japan", "travel", "words"],
+    "slot_body_end": [],
+}
+_ONLY = [m for m in os.environ.get("SITE_MODULES", "").split(",") if m]
+
+
+def module_names():
+    names = [m for mods in SLOTS.values() for m in mods]
+    return [m for m in names if (MODULES / m).is_dir() and (not _ONLY or m in _ONLY)]
+
+
+def module_text(name, part):
+    f = MODULES / name / f"module.{part}"
+    return f.read_text(encoding="utf-8") if f.is_file() else ""
+
+
+def bundle(part, base):
+    """Base stylesheet or script followed by every active module's own."""
+    out = [(SRC / base).read_text(encoding="utf-8")]
+    for m in module_names():
+        t = module_text(m, part)
+        if t.strip():
+            out.append(f"\n/* ---- module: {m} ---- */\n{t}")
+    return "\n".join(out)
 SITE_URL = "https://shephalibhatt.com/"
 MONTHS = "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split()
 
@@ -553,14 +589,37 @@ def render(copy, stories):
         f"</button></figure></div></div>"
     )
 
-    icons = [inline_svg(f"step-{i}", "step-svg")[0] or STEP_FALLBACK[i - 1] for i in range(1, 5)]
-    titles = [("about-title", "About"), ("stories-title", "Selected stories"),
-              ("onair-title", "On air &amp; conversations"), ("contact-title", "Elsewhere &amp; contact")]
-    heads = {f"head{i}": step_head(i, 4, hid, t, icons[i - 1]) for i, (hid, t) in enumerate(titles, 1)}
+    active = module_names()
+    slots = {slot: "\n".join(module_text(m, "html") for m in mods if m in active) for slot, mods in SLOTS.items()}
+    has_off = bool(slots["slot_offpage"].strip())
+    steps = [("head1", "about-title", "About", 1), ("head2", "stories-title", "Selected stories", 2),
+             ("head3", "onair-title", "On air &amp; conversations", 3)]
+    if has_off:
+        steps.append(("head_offpage", "offpage-title", "Off the page", 5))
+    steps.append(("head4", "contact-title", "Elsewhere &amp; contact", 4))
+    heads = {}
+    for n, (key, hid, t, icon) in enumerate(steps, 1):
+        svg = inline_svg(f"step-{icon}", "step-svg")[0] or STEP_FALLBACK[min(icon, 4) - 1]
+        heads[key] = step_head(n, len(steps), hid, t, svg)
+    if has_off:
+        slots["slot_offpage"] = (
+            '  <section class="section section-offpage" id="off-the-page" aria-labelledby="offpage-title">\n'
+            f'    <div class="wrap">\n      {heads.pop("head_offpage")}\n'
+            '      <p class="offpage-lede reveal">The reporting is only part of it. A few things from her own posts about life away from the desk.</p>\n'
+            f'    </div>\n{slots["slot_offpage"]}\n  </section>'
+        )
+    nav = [("about", "About"), ("stories", "Stories"), ("on-air", "On air")]
+    if has_off:
+        nav.append(("off-the-page", "Off the page"))
+    nav.append(("contact", "Contact"))
+    nav_html = "\n".join(
+        f'        <li{" class=\'nav-extra\'" if hid == "off-the-page" else ""}><a href="#{hid}"><span class="nav-num">{i:02d}</span>{label}</a></li>'
+        for i, (hid, label) in enumerate(nav, 1)
+    )
 
     deco = {k: inline_svg(k, f"deco-svg deco-{k}")[0] for k in ("lamp", "plant", "mug", "flatpack-pieces")}
 
-    css = (SRC / "styles.css").read_bytes() + (SRC / "site.js").read_bytes()
+    css = (bundle("css", "styles.css") + bundle("js", "site.js")).encode("utf-8")
     tpl = Template((SRC / "template.html").read_text(encoding="utf-8"))
     return tpl.substitute(
         name=e(name), tagline=e(copy.get("tagline")), intro=e(copy.get("intro")),
@@ -570,7 +629,7 @@ def render(copy, stories):
         year=datetime.date.today().year, jsonld=jsonld, hero_scene=hero_scene,
         deco_lamp=deco["lamp"], deco_plant=deco["plant"], deco_mug=deco["mug"],
         deco_flatpack=deco["flatpack-pieces"],
-        version=hashlib.sha1(css).hexdigest()[:8], **heads,
+        version=hashlib.sha1(css).hexdigest()[:8], nav=nav_html, **heads, **slots,
     )
 
 
@@ -664,8 +723,8 @@ def main():
     (DIST / "assets").mkdir(parents=True)
     w = lambda name, text: (DIST / name).write_text(text, encoding="utf-8")
     w("index.html", render(copy, stories))
-    shutil.copy2(SRC / "styles.css", DIST / "styles.css")
-    shutil.copy2(SRC / "site.js", DIST / "site.js")
+    w("styles.css", bundle("css", "styles.css"))
+    w("site.js", bundle("js", "site.js"))
     for f in ASSETS.iterdir():
         if f.is_file():
             shutil.copy2(f, DIST / "assets" / f.name)
