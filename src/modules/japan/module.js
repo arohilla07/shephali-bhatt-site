@@ -41,7 +41,7 @@
         g: g, line: line, blur: g.querySelector(".m-japan-blur"), rest: line.getAttribute("d"),
         n: n, b: b, f: f, h: h, nx: -dy / len, ny: dx / len,
         mx: (n[0] + b[0]) / 2, my: (n[1] + b[1]) / 2,
-        dur: 900 - 280 * k, wobble: 9 + 6 * k, size: 6.4 - 2.6 * k,
+        dur: 900 - 280 * k, wobble: 9 + 6 * k, size: 9.5 - 3.5 * k,
         live: false, t0: 0, amp: 0, dir: 1, last: -1e9, flash: 0
       };
     });
@@ -68,7 +68,7 @@
         if (age >= s.dur) { settle(s); continue; }
         busy = true;
         var p = age / s.dur;
-        var env = s.amp * Math.exp(-3.2 * p) * (1 - p);
+        var env = s.amp * Math.exp(-2.5 * p) * (1 - p);
         var a = env * Math.cos(2 * Math.PI * s.wobble * age / 1000) * s.dir;
         var cx = s.mx + s.nx * 2 * a, cy = s.my + s.ny * 2 * a;
         s.line.setAttribute("d", "M" + fx(s.h[0]) + " " + fx(s.h[1]) + "L" + fx(s.n[0]) + " " + fx(s.n[1]) +
@@ -77,7 +77,7 @@
         s.blur.setAttribute("d", "M" + fx(s.n[0]) + " " + fx(s.n[1]) +
           "Q" + fx(s.mx + ex) + " " + fx(s.my + ey) + " " + fx(s.b[0]) + " " + fx(s.b[1]) +
           "Q" + fx(s.mx - ex) + " " + fx(s.my - ey) + " " + fx(s.n[0]) + " " + fx(s.n[1]) + "Z");
-        s.blur.style.opacity = (0.2 * (1 - p)).toFixed(3);
+        s.blur.style.opacity = (0.26 * (1 - p)).toFixed(3);
       }
       raf = busy ? window.requestAnimationFrame(frame) : 0;
     }
@@ -130,7 +130,7 @@
       var freq = 440 * Math.pow(2, (MIDI[i] - 69) / 12);
       var k = i / (COUNT - 1);
       var sr = ctx.sampleRate;
-      var t60 = 2.3 - 0.9 * k;
+      var t60 = 2.4 - 0.6 * k;
       var len = Math.floor(sr * (t60 + 0.1));
       var buf = ctx.createBuffer(1, len, sr);
       var out = buf.getChannelData(0);
@@ -250,6 +250,8 @@
     pad.addEventListener("pointerdown", function (ev) {
       if (ev.pointerType === "mouse" && ev.button !== 0) return;
       lastPointer = nowMs();
+      pad.classList.add("is-pointer"); // no focus ring for mouse or touch plucks
+      mark(-1);
       var pos = locate(ev);
       held = true; // a slide may begin beside the strings and then cross them
       ev.preventDefault();
@@ -332,12 +334,19 @@
       if (i >= 0) strings[i].g.classList.add("is-focus");
     };
     pad.addEventListener("focusin", function (ev) {
-      var i = keys.indexOf(ev.target), visible = true;
-      try { visible = ev.target.matches(":focus-visible"); } catch (e) { visible = true; }
+      var i = keys.indexOf(ev.target), visible = !pad.classList.contains("is-pointer");
+      try { visible = visible && ev.target.matches(":focus-visible"); } catch (e) { /* older browsers: keep it */ }
       mark(i >= 0 && visible ? i : -1);
       if (i >= 0 && i !== current) setCurrent(i, false);
     });
     pad.addEventListener("focusout", function () { mark(-1); });
+    // any key press brings the focus ring back
+    doc.addEventListener("keydown", function () {
+      if (!pad.classList.contains("is-pointer")) return;
+      pad.classList.remove("is-pointer");
+      var i = keys.indexOf(doc.activeElement);
+      if (i >= 0) mark(i);
+    }, true);
 
     /* ---- sound on / off ---- */
     if (soundBtn) {

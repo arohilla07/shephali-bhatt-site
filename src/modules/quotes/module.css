@@ -276,8 +276,11 @@
   .m-quotes--armed .m-quotes-slot.is-hung:not(.is-set) .m-quotes-hang {
     animation: m-quotes-drop 1.3s var(--mq-d, 0ms) backwards;
   }
-  .m-quotes--armed .m-quotes-slot--sway.is-set .m-quotes-hang {
-    animation: m-quotes-sway 6.5s ease-in-out infinite;
+  .m-quotes--armed .m-quotes-slot--sway.is-set .m-quotes-hang { /* longhands, so the pause rules below still apply */
+    animation-name: m-quotes-sway;
+    animation-duration: 6.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
   }
   .m-quotes-slot:nth-child(even) .m-quotes-hang { --mq-s: -1; }
   .m-quotes--away .m-quotes-hang,

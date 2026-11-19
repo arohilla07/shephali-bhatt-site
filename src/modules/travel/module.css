@@ -143,13 +143,18 @@ html.no-js .m-travel-tear { visibility: hidden; }
 
 /* ------------------------------------------------------------ layouts */
 @media (max-width: 639px) {
+  .m-travel .inter-head { margin-bottom: 22px; }
+  .m-travel-stage { gap: 18px; }
+  .m-travel-slip { padding: 11px 14px 13px; }
+  .m-travel-slip-q { font-size: 23px; }
+  .m-travel-slip-t { font-size: 13px; line-height: 1.45; }
   .m-travel-pass { flex-direction: column; }
   .m-travel-main { border-right-style: solid; border-bottom-style: dashed; border-radius: 14px 14px 9px 9px; }
   .m-travel-band { padding-left: 18px; padding-right: 18px; }
-  .m-travel-body { gap: 12px; padding: 14px 18px 15px; }
+  .m-travel-body { gap: 11px; padding: 13px 18px 14px; }
   .m-travel-v { font-size: 22px; }
   .m-travel-f-name .m-travel-v { font-size: 27px; }
-  .m-travel-v.m-travel-code { font-size: 50px; }
+  .m-travel-v.m-travel-code { font-size: 46px; }
   .m-travel-v.m-travel-dest { font-size: 24px; }
   .m-travel-leg { column-gap: 14px; }
   .m-travel-row { justify-content: space-between; gap: 10px 14px; padding-top: 12px; }

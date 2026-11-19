@@ -64,6 +64,7 @@ html.js .m-japan .m-japan-keys {
 }
 .m-japan-key:focus { outline: none; }
 .m-japan-key:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; border-radius: 999px; background: rgba(44, 91, 208, .07); }
+.m-japan-keys.is-pointer .m-japan-key:focus-visible { outline: none; background: none; }
 
 .m-japan-sound { display: none; }
 html.js .m-japan .m-japan-sound {
