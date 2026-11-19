@@ -109,12 +109,7 @@
       var btns = doc.querySelectorAll("[data-mode-toggle]");
       if (!btns.length) return;
       var toast = doc.querySelector(".warm-toast"), light = doc.querySelector(".warm-light"), tt;
-      var lines = [
-        ["Dark mode? Not here.", "There&rsquo;s enough darkness in the world. Here&rsquo;s some warm light instead."],
-        ["Still no dark mode.", "Light is good. We turned the lamps up a little more."],
-        ["Nice try.", "This reading room only comes in daylight and lamplight."]
-      ];
-      var tries = 0;
+      var line = ["Still no dark mode.", "Light is good. We turned the lamps up a little more."];
       function set(on, fromBtn) {
         if (fromBtn && light) {
           var r = fromBtn.getBoundingClientRect();
@@ -154,7 +149,7 @@
         b.addEventListener("click", function () {
           var on = !root.classList.contains("warm");
           set(on, b);
-          if (on) { var l = lines[Math.min(tries++, lines.length - 1)]; say("<b>" + l[0] + "</b>" + l[1]); motes(b); }
+          if (on) { say("<b>" + line[0] + "</b>" + line[1]); motes(b); }
           else say("<b>Back to cool daylight.</b>Still bright, just a little crisper.");
         });
       });
